@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Salido Gazette — Portfolio of Venard Jhon C. Salido</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --ink: #0f0d0a;
+  --ink-2: #1e1a14;
+  --ink-mid: #3d3020;
+  --ink-light: #7a6650;
+  --paper: #f5edd8;
+  --paper-2: #ede0c4;
+  --paper-3: #e2d0a8;
+  --paper-4: #d4bc88;
+  --red: #8b1c1c;
+  --gold: #c8961e;
+  --col-rule: #3d3020;
+  --shadow: rgba(15,13,10,0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── PAPER TEXTURE ── */
+body {
+  background-color: var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(61,48,32,0.04) 27px, rgba(61,48,32,0.04) 28px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  color: var(--ink);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── UTILITY ── */
+.rule-thick   { border: none; border-top: 3px solid var(--ink); margin: 0; }
+.rule-thin    { border: none; border-top: 1px solid var(--col-rule); margin: 0; }
+.rule-double  { border: none; border-top: 5px double var(--ink); margin: 0; }
+.rule-gold    { border: none; border-top: 2px solid var(--gold); margin: 0; }
+.rule-triple {
+  border: none;
+  height: 5px;
+  background: linear-gradient(to bottom, var(--ink) 0, var(--ink) 2px, transparent 2px, transparent 3px, var(--ink) 3px, var(--ink) 5px);
+  margin: 0;
+}
+
+/* ── NAV TICKER ── */
+.ticker-bar {
+  background: var(--ink);
+  color: var(--paper-2);
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+}
+@keyframes ticker {
+  from { transform: translateX(100vw); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  padding: 0 32px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.masthead-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--ink);
+  gap: 12px;
+}
+.topbar-side {
+  font-family: 'Special Elite', cursive;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--ink-mid);
+  text-align: center;
+  flex: 1;
+}
+.topbar-center {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--red);
+  text-align: center;
+  border-left: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
+  padding: 0 20px;
+  flex: 1.5;
+}
+
+.masthead-main {
+  text-align: center;
+  padding: 16px 0 10px;
+  position: relative;
+}
+
+.gazette-name {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: clamp(3.2rem, 10vw, 7rem);
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  display: block;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.12);
+}
+.gazette-subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-light);
+  letter-spacing: 0.22em;
+  margin-top: 4px;
+}
+
+.masthead-rule-band {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  margin: 8px 0 0;
+}
+.band-section {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 5px 12px;
+  border-right: 1px solid var(--ink);
+  white-space: nowrap;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.band-section:last-child { border-right: none; }
+.band-fill { display: none; }
+
+/* ── STICKY NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--ink);
+  border-bottom: 2px solid var(--gold);
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+nav ul li a {
+  display: block;
+  padding: 9px 18px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--paper-2);
+  text-decoration: none;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.2s, color 0.2s;
+}
+nav ul li:first-child a { border-left: 1px solid rgba(255,255,255,0.08); }
+nav ul li a:hover { background: var(--gold); color: var(--ink); }
+
+/* ── SECTION WRAPPER ── */
+.newspaper-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── SECTION FLAG ── */
+.section-flag {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 20px;
+}
+.flag-label {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+}
+.flag-rule { flex: 1; height: 2px; background: var(--ink); }
+.flag-label-red { background: var(--red); }
+
+/* ── ABOUT / FRONT PAGE ── */
+#about {
+  padding: 28px 0 36px;
+  border-bottom: 3px double var(--ink);
+}
+
+.front-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px 1fr;
+  gap: 0;
+  border: 1px solid var(--ink);
+}
+
+/* Column rules between grid cols */
+.col-left, .col-center, .col-right {
+  padding: 20px 22px;
+}
+.col-left  { border-right: 1px solid var(--col-rule); }
+.col-center { border-right: 1px solid var(--col-rule); background: var(--paper-2); }
+
+/* Drop cap */
+.drop-cap::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.2em;
+  font-weight: 900;
+  float: left;
+  line-height: 0.82;
+  margin: 4px 6px 0 0;
+  color: var(--ink);
+}
+
+.headline-main {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 10px;
+  hyphens: auto;
+}
+.headline-deck {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  margin-bottom: 14px;
+  line-height: 1.55;
+  border-bottom: 1px solid var(--col-rule);
+  padding-bottom: 12px;
+}
+.dateline {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+  display: block;
+}
+.byline {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-light);
+  border-bottom: 1px solid var(--col-rule);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.body-copy {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--ink-mid);
+  hyphens: auto;
+  text-align: justify;
+}
+.body-copy p { margin-bottom: 12px; }
+
+/* Pull quote */
+.pull-quote {
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  padding: 14px 8px;
+  margin: 18px 0;
+  text-align: center;
+}
+.pull-quote blockquote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.pull-quote cite {
+  display: block;
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-light);
+  margin-top: 8px;
+}
+
+/* Portrait */
+.portrait-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+.portrait-wrap img {
+  width: 100%;
+  display: block;
+  filter: sepia(45%) contrast(1.1) brightness(0.95);
+  border: 1px solid var(--ink);
+}
+.portrait-caption {
+  border-top: 1px solid var(--ink);
+  padding: 6px 0 0;
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+/* Info table */
+.vitals-box {
+  border: 1px solid var(--ink);
+  margin-bottom: 16px;
+}
+.vitals-title {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  display: block;
+}
+.vitals-box table { width: 100%; border-collapse: collapse; }
+.vitals-box tr { border-bottom: 1px solid var(--paper-3); }
+.vitals-box tr:last-child { border-bottom: none; }
+.vitals-box td {
+  padding: 4px 8px;
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+.vitals-box td:first-child {
+  color: var(--red);
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 48%;
+  border-right: 1px solid var(--paper-3);
+}
+
+/* Achievement inline box */
+.award-box {
+  border: 1px solid var(--gold);
+  padding: 10px 12px;
+  margin-top: 12px;
+  background: rgba(200,150,30,0.06);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.award-icon { font-size: 1.4rem; line-height: 1; }
+.award-text { font-size: 12px; line-height: 1.55; color: var(--ink-mid); }
+.award-text strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  color: var(--ink);
+  margin-bottom: 1px;
+}
+
+/* Sub-headline right col */
+.sub-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 14px 0 8px;
+  border-top: 2px solid var(--ink);
+  padding-top: 10px;
+}
+.sub-deck {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--col-rule);
+  padding-bottom: 8px;
+}
+
+/* ── SKILLS ── */
+#skills {
+  background: var(--ink);
+  padding: 32px 0 40px;
+  border-bottom: 4px double var(--gold);
+  border-top: 4px double var(--gold);
+}
+
+.skills-masthead {
+  text-align: center;
+  padding: 0 0 20px;
+}
+.skills-masthead h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: var(--paper);
+  margin-bottom: 4px;
+}
+.skills-kicker {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.skills-columns {
+  columns: 4;
+  column-gap: 0;
+  column-rule: 1px solid rgba(200,150,30,0.25);
+  border: 1px solid rgba(200,150,30,0.25);
+}
+.skill-entry {
+  break-inside: avoid;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(200,150,30,0.15);
+}
+.skill-entry h4 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(200,150,30,0.2);
+}
+.skill-entry p {
+  font-size: 12.5px;
+  color: rgba(242,232,213,0.7);
+  line-height: 1.7;
+}
+
+/* ── PROJECTS ── */
+#projects {
+  padding: 36px 0 44px;
+  border-bottom: 3px double var(--ink);
+}
+
+.projects-broadsheet {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--ink);
+}
+
+.proj-article {
+  border-right: 1px solid var(--col-rule);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s;
+}
+.proj-article:last-child { border-right: none; }
+.proj-article:hover { background: var(--paper-2); }
+
+.proj-thumb-wrap {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+  flex-shrink: 0;
+}
+.proj-thumb-wrap img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  filter: sepia(30%) contrast(1.08);
+  transition: filter 0.4s, transform 0.4s;
+}
+.proj-article:hover .proj-thumb-wrap img {
+  filter: sepia(0%) contrast(1.1);
+  transform: scale(1.03);
+}
+.proj-thumb-label {
+  position: absolute;
+  bottom: 0; left: 0;
+  background: var(--red);
+  color: var(--paper);
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+}
+
+.proj-body {
+  padding: 14px 16px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.proj-hed {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--col-rule);
+  padding-bottom: 8px;
+}
+.proj-deck {
+  font-size: 12.5px;
+  color: var(--ink-mid);
+  line-height: 1.75;
+  margin-bottom: 14px;
+  flex: 1;
+}
+.proj-link {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-block;
+  border: 1.5px solid var(--ink);
+  padding: 5px 14px;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  background: transparent;
+}
+.proj-link:hover, .proj-link.gallery:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.proj-link.gallery {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+/* Second row projects — 2-col + 1-col */
+.projects-row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--ink);
+  border-top: none;
+}
+
+/* ── EXPERIENCE / EDUCATION ── */
+#experience {
+  background: var(--paper-2);
+  padding: 36px 0 44px;
+  border-bottom: 3px double var(--ink);
+}
+
+.exp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--ink);
+}
+
+.exp-col, .edu-col {
+  padding: 0;
+}
+.exp-col { border-right: 1px solid var(--ink); }
+
+.col-header {
+  background: var(--ink-2);
+  color: var(--paper);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-bottom: 2px solid var(--gold);
+}
+.col-body { padding: 18px 18px 20px; }
+
+.tl-item {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px dashed var(--paper-4);
+  position: relative;
+  padding-left: 16px;
+}
+.tl-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.tl-item::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 8px;
+  color: var(--gold);
+}
+.tl-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 3px;
+}
+.tl-date {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--red);
+}
+.tl-org {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  color: var(--ink-light);
+}
+.tl-item h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.tl-item p { font-size: 12.5px; color: var(--ink-mid); line-height: 1.75; }
+
+/* ── CONTACT ── */
+#contact {
+  padding: 36px 0 44px;
+  background: var(--ink);
+  border-top: 4px double var(--gold);
+}
+
+.contact-wrap {
+  border: 1px solid rgba(200,150,30,0.3);
+}
+.contact-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid rgba(200,150,30,0.3);
+}
+.contact-cell {
+  padding: 18px 20px;
+  border-right: 1px solid rgba(200,150,30,0.3);
+}
+.contact-cell:last-child { border-right: none; }
+.contact-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
+}
+.contact-value {
+  font-size: 13px;
+  color: var(--paper-2);
+  text-decoration: none;
+  word-break: break-word;
+  line-height: 1.5;
+  display: block;
+}
+.contact-value:hover { color: var(--gold); }
+
+.contact-socials {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid rgba(200,150,30,0.3);
+}
+.social-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-right: 1px solid rgba(200,150,30,0.3);
+  transition: background 0.2s, color 0.2s;
+}
+.social-link:last-child { border-right: none; }
+.social-link:hover { background: var(--gold); color: var(--ink); }
+
+.contact-headline {
+  text-align: center;
+  padding: 24px 0 20px;
+}
+.contact-headline h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 900;
+  color: var(--paper);
+  margin-bottom: 6px;
+}
+.contact-headline p {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(242,232,213,0.6);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  border-top: 2px solid rgba(200,150,30,0.2);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+footer p {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(242,232,213,0.35);
+}
+
+/* ── LIGHTBOX ── */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(6,5,3,0.94);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-inner {
+  position: relative;
+  max-width: 920px;
+  width: 100%;
+}
+.lightbox-inner h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 1rem;
+  margin-bottom: 12px;
+  font-style: italic;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+.lightbox-slider {
+  overflow: hidden;
+  border: 2px solid rgba(200,150,30,0.35);
+}
+.lightbox-slides {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.lightbox-slides img {
+  min-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  display: block;
+}
+.lightbox-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.lb-btn {
+  background: var(--ink);
+  color: var(--gold);
+  border: 1px solid rgba(200,150,30,0.4);
+  padding: 7px 20px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.2s;
+}
+.lb-btn:hover { background: var(--gold); color: var(--ink); }
+.lb-counter {
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  color: rgba(242,232,213,0.4);
+  letter-spacing: 0.1em;
+}
+.lb-close {
+  position: absolute;
+  top: -12px; right: -12px;
+  background: var(--red);
+  color: var(--paper);
+  border: none;
+  width: 30px; height: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+
+@media (max-width: 900px) {
+  .newspaper-wrap { padding: 0 16px; }
+  .masthead { padding: 0 16px; }
+  .gazette-name { font-size: clamp(2.4rem, 7vw, 4rem); }
+  .band-section { font-size: 9px; letter-spacing: 0.15em; padding: 5px 8px; }
+  nav ul li a { padding: 9px 12px; font-size: 10px; letter-spacing: 0.2em; }
+  .front-page-grid { grid-template-columns: 1fr 1fr; }
+  .col-center { display: none; }
+  .col-left { border-right: 1px solid var(--col-rule); }
+  .skills-columns { columns: 2; }
+  .projects-broadsheet, .projects-row2 { grid-template-columns: 1fr 1fr; }
+  .proj-article:nth-child(2n) { border-right: none; }
+  .proj-article:not(:last-child) { border-bottom: 1px solid var(--col-rule); }
+  .exp-layout { grid-template-columns: 1fr; }
+  .exp-col { border-right: none; border-bottom: 1px solid var(--ink); }
+  .contact-top { grid-template-columns: 1fr 1fr; }
+  .contact-cell:nth-child(2) { border-right: none; }
+  .contact-cell:nth-child(3) { border-right: 1px solid rgba(200,150,30,0.3); }
+}
+
+@media (max-width: 600px) {
+  .newspaper-wrap { padding: 0 12px; }
+  .masthead { padding: 0 12px; }
+  .masthead-topbar { flex-direction: column; gap: 4px; text-align: center; }
+  .topbar-side { font-size: 9px; }
+  .topbar-center { border-left: none; border-right: none; padding: 4px 0; font-size: 9px; }
+  .gazette-name { font-size: clamp(2rem, 12vw, 3rem); }
+  .gazette-subtitle { font-size: 11px; letter-spacing: 0.1em; }
+  .masthead-rule-band { display: none; }
+  nav ul { display: grid; grid-template-columns: 1fr 1fr; }
+  nav ul li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+  nav ul li a { font-size: 10px; padding: 10px 8px; letter-spacing: 0.15em; border-right: 1px solid rgba(255,255,255,0.07); border-left: none !important; text-align: center; }
+  nav ul li:nth-child(2n) a { border-right: none; }
+  .front-page-grid { grid-template-columns: 1fr; }
+  .col-left { border-right: none; border-bottom: 1px solid var(--col-rule); }
+  .col-right { border-top: 1px solid var(--col-rule); }
+  .headline-main { font-size: 1.6rem; }
+  .drop-cap::first-letter { font-size: 3.2em; }
+  .skills-columns { columns: 1; }
+  .skills-masthead h2 { font-size: 1.4rem; }
+  .projects-broadsheet, .projects-row2 { grid-template-columns: 1fr; }
+  .proj-article { border-right: none; border-bottom: 1px solid var(--col-rule); }
+  .proj-article:last-child { border-bottom: none; }
+  .proj-thumb-wrap img { height: 200px; }
+  .col-header { font-size: 0.9rem; }
+  .col-body { padding: 14px; }
+  .contact-top { grid-template-columns: 1fr; }
+  .contact-cell { border-right: none; border-bottom: 1px solid rgba(200,150,30,0.2); }
+  .contact-cell:last-child { border-bottom: none; }
+  .contact-socials { flex-direction: column; }
+  .social-link { border-right: none; border-bottom: 1px solid rgba(200,150,30,0.2); padding: 12px; }
+  .social-link:last-child { border-bottom: none; }
+  .contact-headline h2 { font-size: 1.6rem; }
+  footer { flex-direction: column; text-align: center; gap: 4px; }
+  .lb-btn { padding: 6px 12px; font-size: 11px; }
+  .lb-close { top: -8px; right: -8px; width: 26px; height: 26px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TICKER ── -->
+<div class="ticker-bar" role="marquee">
+  <span class="ticker-inner">
+    &nbsp;&nbsp;&nbsp;⬥ BREAKING: Software Developer Available for Hire — Zamboanga City, Philippines &nbsp;&nbsp;&nbsp;⬥ CAREER SERVICE PROFESSIONAL ELIGIBILITY — Civil Service Commission, March 2024 &nbsp;&nbsp;&nbsp;⬥ ICpEP REGIONAL QUIZ BOWL CHAMPION — Sept 29, 2017 &nbsp;&nbsp;&nbsp;⬥ FULL-STACK · MOBILE · AUTOMATION · GIS — Laravel · Flutter · Supabase · VBA &nbsp;&nbsp;&nbsp;⬥ PORTFOLIO EDITION — Vol. I, Issue I &nbsp;&nbsp;&nbsp;⬥ ESTABLISHED 1994, ZAMBOANGA CITY, PHILIPPINES &nbsp;&nbsp;&nbsp;
+  </span>
+</div>
+
+<!-- ── MASTHEAD ── -->
+<header class="masthead" role="banner">
+  <div class="masthead-topbar">
+    <div class="topbar-side">
+      ZAMBOANGA CITY, PHILIPPINES<br>
+      EST. MAY 12, 1994
+    </div>
+    <div class="topbar-center">★ THE SALIDO GAZETTE ★</div>
+    <div class="topbar-side">
+      B.S. INFORMATION TECHNOLOGY<br>
+      VOL. I &middot; ISSUE I
+    </div>
+  </div>
+
+  <div class="masthead-main">
+    <span class="gazette-name">The Salido Gazette</span>
+    <p class="gazette-subtitle">Portfolio of Venard Jhon C. Salido &mdash; Software Developer &amp; IT Professional</p>
+  </div>
+
+  <div class="masthead-rule-band">
+    <span class="band-section">Software Development</span>
+    <span class="band-section">Mobile &amp; Cross-Platform</span>
+    <span class="band-section">Data &amp; Automation</span>
+    <span class="band-section">Public Sector IT</span>
+    <span class="band-section">Laravel · Flutter · VBA</span>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav aria-label="Main navigation">
+  <ul>
+    <li><a href="#about">Front Page</a></li>
+    <li><a href="#skills">Competencies</a></li>
+    <li><a href="#projects">Works</a></li>
+    <li><a href="#experience">Record</a></li>
+    <li><a href="#contact">Correspondence</a></li>
+  </ul>
+</nav>
+
+<!-- ── ABOUT / FRONT PAGE ── -->
+<section id="about">
+  <div class="newspaper-wrap">
+
+    <div class="section-flag fade-up">
+      <div class="flag-label flag-label-red">Front Page</div>
+      <div class="flag-rule"></div>
+      <span style="font-family:'Special Elite',cursive;font-size:10px;letter-spacing:0.15em;color:var(--ink-light);padding:0 12px;white-space:nowrap;">Monday, May 2025</span>
+      <div class="flag-rule"></div>
+    </div>
+
+    <div class="front-page-grid fade-up">
+
+      <!-- LEFT COLUMN -->
+      <div class="col-left">
+        <span class="dateline">Zamboanga City, Philippines — Special Edition</span>
+        <p class="byline">By the Editorial Staff · Information Technology Desk</p>
+
+        <h1 class="headline-main">The Man Behind the Code: A Developer Who Builds With Purpose</h1>
+        <p class="headline-deck">From public-safety crime maps to government payroll systems, Venard Jhon C. Salido turns technical problems into human solutions.</p>
+
+        <div class="pull-quote">
+          <blockquote>"A positive thinker who knows how to troubleshoot, handle problems, and manage what matters."</blockquote>
+          <cite>— V.J.C. Salido, IT Professional</cite>
+        </div>
+
+        <div class="body-copy">
+          <p class="drop-cap">Venard Jhon C. Salido is a Filipino software developer and IT professional based in Zamboanga City, holding a Bachelor of Science in Information Technology from Western Mindanao State University — a degree earned through years of deliberate study and hands-on practice.</p>
+          <p>His work spans full-stack web applications, mobile development, database engineering, and process automation. A particular focus on systems that serve real communities: public safety, government operations, parish services, and construction management defines his portfolio.</p>
+          <p>He approaches every project as both a technical challenge and a human one — asking not just <em>how</em> to build, but <em>why</em> it matters to the people who will ultimately use it. His tools range from Laravel and Flutter to VBA macros and PostGIS spatial databases.</p>
+        </div>
+
+        <div class="award-box">
+          <span class="award-icon">🏆</span>
+          <div class="award-text"><strong>ICpEP Regional Quiz Bowl Champion</strong>Institute of Computer Engineers of the Philippines · Sept 29, 2017</div>
+        </div>
+        <div class="award-box" style="margin-top:8px;">
+          <span class="award-icon">📜</span>
+          <div class="award-text"><strong>Career Service Professional Eligibility</strong>Civil Service Commission · March 03, 2024</div>
+        </div>
+      </div>
+
+      <!-- CENTER COLUMN (portrait + vitals) -->
+      <div class="col-center">
+        <div class="portrait-wrap">
+          <img src="assets/venard.jpg" alt="Venard Jhon C. Salido" />
+          <p class="portrait-caption">VENARD JHON C. SALIDO<br>B.S. Information Technology · WMSU</p>
+        </div>
+
+        <div class="vitals-box">
+          <span class="vitals-title">Personal Record</span>
+          <table>
+            <tr><td>Date of Birth</td><td>May 12, 1994</td></tr>
+            <tr><td>Location</td><td>Zamboanga City, PH</td></tr>
+            <tr><td>Nationality</td><td>Filipino</td></tr>
+            <tr><td>Status</td><td>Single</td></tr>
+            <tr><td>Blood Type</td><td>O</td></tr>
+          </table>
+        </div>
+
+        <div class="pull-quote" style="margin-top:14px;">
+          <blockquote>"Beyond software, he is a regional quiz bowl champion, a certified data privacy advocate, and a lifelong learner."</blockquote>
+        </div>
+
+        <div class="body-copy" style="font-size:12.5px;">
+          <p>Certified in data privacy and cybersecurity awareness through DICT, Salido brings not only technical skill but also an understanding of the regulatory landscape governing modern systems in the Philippines.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="col-right">
+        <h2 class="sub-headline">Developer Profile: Tools of the Trade</h2>
+        <p class="sub-deck">A survey of the technologies that power Salido's most impactful work.</p>
+        <div class="body-copy">
+          <p>Laravel serves as his primary web framework — bringing MVC discipline and expressive PHP to government systems and insurance platforms alike. MySQL underpins most relational data needs, while PostgreSQL paired with PostGIS handles spatial queries in his crime-mapping work.</p>
+          <p>On the mobile front, Flutter's cross-platform capabilities allow a single codebase to reach both Android and iOS users. Firebase Cloud Messaging handles push notifications, while Supabase provides a real-time backend that complements the Flutter ecosystem without the overhead of a custom API layer.</p>
+          <p>For automation, Microsoft Excel with VBA macros remains a powerful ally — enabling sophisticated CPM scheduling, dynamic Gantt charts, and barcode-driven compliance tracking to be deployed on hardware already present in any office.</p>
+        </div>
+
+        <h2 class="sub-headline" style="margin-top:20px;">On the Record: What Makes Him Different</h2>
+        <p class="sub-deck">Colleagues and collaborators note a rare combination of traits.</p>
+        <div class="body-copy">
+          <p>In a field where specialists abound, Salido occupies an uncommon position: equally at home designing a PostgreSQL schema, writing a Flutter widget tree, scripting an Excel macro, and explaining the result to a non-technical government official.</p>
+          <p>His background in Computer Engineering — before transitioning to Information Technology — gives him a hardware intuition that most web developers lack. Troubleshooting network faults, reformatting systems, and diagnosing hardware failures are second nature.</p>
+          <p>For recruiters and project managers: he holds the Civil Service Professional eligibility, making him eligible for government IT positions, and remains open to both employment and freelance engagements.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="newspaper-wrap">
+    <div class="skills-masthead fade-up">
+      <span class="skills-kicker">⬥ Special Report ⬥</span>
+      <h2>Craft &amp; Competencies: A Full Inventory</h2>
+    </div>
+    <hr class="rule-gold" style="margin-bottom:20px;">
+
+    <div class="skills-columns fade-up">
+      <div class="skill-entry">
+        <h4>Web Development</h4>
+        <p>Laravel (PHP), MVC architecture, MySQL, RESTful APIs, HTML/CSS/JS — building robust full-stack platforms for real-world operations.</p>
+      </div>
+      <div class="skill-entry">
+        <h4>Mobile &amp; Cross-Platform</h4>
+        <p>Flutter for cross-platform apps with real-time capabilities — integrated with Supabase, PostgreSQL + PostGIS, and Firebase Cloud Messaging.</p>
+      </div>
+      <div class="skill-entry">
+        <h4>Data &amp; Automation</h4>
+        <p>Microsoft Excel VBA macros, automated reporting pipelines, Critical Path Method scheduling, payroll computation, and compliance dashboards.</p>
+      </div>
+      <div class="skill-entry">
+        <h4>Systems &amp; IT Support</h4>
+        <p>Hardware troubleshooting, OS formatting, software installation, network basics, and systems administration for small to medium organizations.</p>
+      </div>
+      <div class="skill-entry">
+        <h4>Communication &amp; Leadership</h4>
+        <p>Excellent written and verbal communication — capable of translating technical concepts for non-technical stakeholders and leading project coordination.</p>
+      </div>
+      <div class="skill-entry">
+        <h4>Productivity Tools</h4>
+        <p>Advanced MS Word, Excel, and PowerPoint. Experienced in documentation, reporting, and creating user-facing instructional materials.</p>
+      </div>
+      <div class="skill-entry">
+        <h4>Financial &amp; Records Management</h4>
+        <p>Hands-on government financial operations through the Bureau of the Treasury — including money management, payroll reconciliation, and records administration.</p>
+      </div>
+      <div class="skill-entry">
+        <h4>Problem Solving</h4>
+        <p>Adept at diagnosing hardware and software issues, resolving system conflicts, and finding practical solutions under pressure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="newspaper-wrap">
+    <div class="section-flag fade-up">
+      <div class="flag-label">Selected Works</div>
+      <div class="flag-rule"></div>
+      <span style="font-family:'Special Elite',cursive;font-size:10px;letter-spacing:0.15em;color:var(--ink-light);padding:0 12px;white-space:nowrap;">Projects of Record</span>
+      <div class="flag-rule"></div>
+    </div>
+
+    <!-- Row 1: 3 projects -->
+    <div class="projects-broadsheet fade-up">
+
+      <article class="proj-article">
+        <div class="proj-thumb-wrap">
+          <img src="assets/zecure.jpg" alt="ZECURE" />
+          <span class="proj-thumb-label">Public Safety · Live</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-hed">ZECURE — Crime Mapping &amp; Safety System</h3>
+          <p class="proj-deck">Cross-platform crime mapping and public safety system for Zamboanga City — connecting citizens and law enforcement through verified incident reporting, real-time maps, safe routes, and push notifications. Built with Flutter, Supabase, PostgreSQL + PostGIS, and Firebase Cloud Messaging.</p>
+          <a class="proj-link" href="https://zecure.netlify.app/" target="_blank" rel="noopener">Visit Live Site →</a>
+        </div>
+      </article>
+
+      <article class="proj-article">
+        <div class="proj-thumb-wrap">
+          <img src="assets/nmg.jpg" alt="NMG Insurance" />
+          <span class="proj-thumb-label">Insurance · Management</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-hed">NMG Insurance Agency — Internal Management System</h3>
+          <p class="proj-deck">Built and maintained the internal management system for NMG Insurance Agency, digitizing end-to-end operations — from policy applications and document management to claims processing and client notifications, including a guest claims feature for unregistered users.</p>
+          <a class="proj-link" href="https://nmginsurance.free.nf/NMG/pages/landing.php" target="_blank" rel="noopener">Visit Site →</a>
+        </div>
+      </article>
+
+      <article class="proj-article">
+        <div class="proj-thumb-wrap">
+          <img src="assets/church.jpg" alt="Parish Portal" />
+          <span class="proj-thumb-label">Community · Parish</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-hed">Our Lady of Peace Parish — Online Portal</h3>
+          <p class="proj-deck">Full-stack online portal and parish management system for Our Lady of Peace and Good Voyage Parish in Tugbungan — enabling parishioners to book appointments for Baptism, Wedding, and Funeral arrangements, reducing manual coordination for the local community.</p>
+          <a class="proj-link" href="https://parishchurch.page.gd/" target="_blank" rel="noopener">Visit Site →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Row 2: 3 more projects -->
+    <div class="projects-row2 fade-up">
+
+      <article class="proj-article" onclick="openLightbox('dole')" style="cursor:pointer;">
+        <div class="proj-thumb-wrap">
+          <img src="assets/dole/dashboard.jpg" alt="DOLE Payroll" />
+          <span class="proj-thumb-label">Government · Laravel</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-hed">DOLE Regional Office — Payroll &amp; TEV System</h3>
+          <p class="proj-deck">Web-based Payroll Management System with integrated Travel Expense Voucher (TEV) Module for the Department of Labor and Employment. Automates semi-monthly payroll, deductions, government remittance reports, digital payslips, and TEV workflows — replacing manual Excel with a role-based Laravel platform.</p>
+          <button class="proj-link gallery" type="button">View Gallery →</button>
+        </div>
+      </article>
+
+      <article class="proj-article" onclick="openLightbox('pmbok')" style="cursor:pointer;">
+        <div class="proj-thumb-wrap">
+          <img src="assets/pmbok/pmbok 1.jpg" alt="PMBOK System" />
+          <span class="proj-thumb-label">Construction · Excel VBA</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-hed">PMBOK-Based Construction Management System</h3>
+          <p class="proj-deck">Automated project planning and monitoring tool built in Microsoft Excel with VBA macros. Streamlines construction scheduling through automated Critical Path Method (CPM) analysis, dynamic Gantt chart generation, mobilization tracking, manpower calculations, and real-time dashboards.</p>
+          <button class="proj-link gallery" type="button">View Gallery →</button>
+        </div>
+      </article>
+
+      <article class="proj-article" onclick="openLightbox('ppe')" style="cursor:pointer;">
+        <div class="proj-thumb-wrap">
+          <img src="assets/ppe/ppe 1.jpg" alt="PPE Compliance" />
+          <span class="proj-thumb-label">Safety · Compliance · Macro</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-hed">PPE Compliance Tracking System</h3>
+          <p class="proj-deck">Macro-enabled Excel system for PPE compliance tracking on construction and industrial sites. Enables barcode-scanning log entry, auto-loads trade-specific PPE requirements, enforces a 1-hour re-inspection rule, logs violations automatically, and generates formatted compliance reports.</p>
+          <button class="proj-link gallery" type="button">View Gallery →</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE & EDUCATION ── -->
+<section id="experience">
+  <div class="newspaper-wrap">
+    <div class="section-flag fade-up">
+      <div class="flag-label">On the Record</div>
+      <div class="flag-rule"></div>
+      <span style="font-family:'Special Elite',cursive;font-size:10px;letter-spacing:0.15em;color:var(--ink-light);padding:0 12px;white-space:nowrap;">Experience &amp; Education</span>
+      <div class="flag-rule"></div>
+    </div>
+
+    <div class="exp-layout fade-up">
+      <div class="exp-col">
+        <div class="col-header">Professional Experience &amp; Trainings</div>
+        <div class="col-body">
+
+          <div class="tl-item">
+            <div class="tl-meta">
+              <span class="tl-date">June 2020</span>
+              <span class="tl-org">Bureau of the Treasury</span>
+            </div>
+            <h4>Treasury Department Intern / Trainee</h4>
+            <p>Completed a training attachment at the Bureau of the Treasury, Governor Alvarez St., Zamboanga City — gaining exposure to government financial operations and treasury processes.</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-meta">
+              <span class="tl-date">Feb 8, 2021</span>
+              <span class="tl-org">DICT Webinar</span>
+            </div>
+            <h4>Data Privacy Protection Awareness</h4>
+            <p>Completed the Department of Information and Communications Technology (DICT) webinar on data privacy protection — building foundational awareness of RA 10173 and responsible data handling practices.</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-meta">
+              <span class="tl-date">March 8, 2022</span>
+              <span class="tl-org">DICT Webinar</span>
+            </div>
+            <h4>Cyber Security Awareness</h4>
+            <p>Completed the DICT webinar: "Tips to Be a Safe and Savvy Online Shopper" — covering cybersecurity hygiene, phishing prevention, and safe online transaction practices.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="edu-col">
+        <div class="col-header">Educational Record</div>
+        <div class="col-body">
+
+          <div class="tl-item">
+            <div class="tl-meta">
+              <span class="tl-date">2018 – 2023</span>
+              <span class="tl-org">WMSU</span>
+            </div>
+            <h4>B.S. Information Technology</h4>
+            <p>Western Mindanao State University — Normal Rd, San Jose, Zamboanga City. Bachelor of Science in Information Technology, with focus on software development, database systems, and IT management.</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-meta">
+              <span class="tl-date">2011 – 2016</span>
+              <span class="tl-org">WMSU</span>
+            </div>
+            <h4>B.S. Computer Engineering (Undergrad)</h4>
+            <p>Western Mindanao State University — Commenced Bachelor of Science in Computer Engineering before transitioning to Information Technology to align with career direction.</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-meta">
+              <span class="tl-date">2007 – 2011</span>
+              <span class="tl-org">ZCHS Main</span>
+            </div>
+            <h4>Secondary Education</h4>
+            <p>Zamboanga City High School Main — Don Alfaro St. Tetuan, Zamboanga City.</p>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-meta">
+              <span class="tl-date">2001 – 2007</span>
+              <span class="tl-org">ZWCS</span>
+            </div>
+            <h4>Primary Education</h4>
+            <p>Zamboanga West Central School — San Jose Rd., Zamboanga City.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="newspaper-wrap">
+    <div class="contact-headline fade-up">
+      <span style="font-family:'Special Elite',cursive;font-size:10px;letter-spacing:0.4em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:6px;">Correspondence Desk</span>
+      <h2>Let's Work Together</h2>
+      <p>Whether you have a project in mind, a problem to solve, or simply want to connect — the line is always open.</p>
+    </div>
+
+    <div class="contact-wrap fade-up">
+      <div class="contact-top">
+        <div class="contact-cell">
+          <span class="contact-label">Email</span>
+          <a class="contact-value" href="mailto:venardjhoncsalido@gmail.com">venardjhoncsalido@gmail.com</a>
+        </div>
+        <div class="contact-cell">
+          <span class="contact-label">Mobile</span>
+          <a class="contact-value" href="tel:+639351363586">+63 935 136 3586</a>
+        </div>
+        <div class="contact-cell">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">Marcos Drive, Putik<br>Zamboanga City, Philippines</span>
+        </div>
+        <div class="contact-cell">
+          <span class="contact-label">Availability</span>
+          <span class="contact-value">Open to opportunities<br>&amp; freelance projects</span>
+        </div>
+      </div>
+      <div class="contact-socials">
+        <a class="social-link" href="https://www.facebook.com/venchansalido" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a class="social-link" href="https://www.instagram.com/venplaystrings/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a class="social-link" href="https://www.linkedin.com/in/venard-jhon-cabahug-salido-08041434b/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 Venard Jhon C. Salido · The Salido Gazette · Vol. I, Issue I</p>
+  <p>Zamboanga City, Philippines · All rights reserved · Crafted with purpose</p>
+</footer>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner" id="lightbox-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <h3 id="lb-title"></h3>
+    <div class="lightbox-slider">
+      <div class="lightbox-slides" id="lb-slides"></div>
+    </div>
+    <div class="lightbox-nav">
+      <button class="lb-btn" onclick="lbPrev()">← Prev</button>
+      <span class="lb-counter" id="lb-counter"></span>
+      <button class="lb-btn" onclick="lbNext()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Fade-up on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Lightbox
+const galleries = {
+  dole: {
+    title: 'DOLE Payroll & TEV System — Gallery',
+    images: ['assets/dole/dashboard.jpg','assets/dole/login.jpg','assets/dole/employee.jpg','assets/dole/payroll 1.jpg','assets/dole/payroll 2.jpg','assets/dole/deductions.jpg','assets/dole/special payroll.jpg','assets/dole/tev req.jpg','assets/dole/TEV.jpg','assets/dole/office orders.jpg','assets/dole/reports.jpg','assets/dole/users.jpg']
+  },
+  pmbok: {
+    title: 'PMBOK Construction Management System — Gallery',
+    images: ['assets/pmbok/pmbok 1.jpg','assets/pmbok/pmbok 2.jpg','assets/pmbok/pmbok 3.jpg','assets/pmbok/pmbok 4.jpg']
+  },
+  ppe: {
+    title: 'PPE Compliance Tracking System — Gallery',
+    images: ['assets/ppe/ppe 1.jpg','assets/ppe/ppe 2.jpg','assets/ppe/ppe 3.jpg','assets/ppe/ppe 4.jpg','assets/ppe/ppe 5.jpg']
+  }
+};
+
+let currentSlide = 0, currentGallery = null;
+
+function openLightbox(key) {
+  currentGallery = galleries[key];
+  currentSlide = 0;
+  document.getElementById('lb-title').textContent = currentGallery.title;
+  const slides = document.getElementById('lb-slides');
+  slides.innerHTML = '';
+  currentGallery.images.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src; img.alt = '';
+    slides.appendChild(img);
+  });
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+function updateLightbox() {
+  document.getElementById('lb-slides').style.transform = `translateX(-${currentSlide * 100}%)`;
+  document.getElementById('lb-counter').textContent = `${currentSlide + 1} / ${currentGallery.images.length}`;
+}
+function lbNext() { if (currentSlide < currentGallery.images.length - 1) { currentSlide++; updateLightbox(); } }
+function lbPrev() { if (currentSlide > 0) { currentSlide--; updateLightbox(); } }
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'ArrowRight') lbNext();
+  if (e.key === 'ArrowLeft') lbPrev();
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>
