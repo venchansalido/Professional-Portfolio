@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Venard Jhon C. Salido — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #1a1209;
+    --ink-faded: #3d2e1a;
+    --ink-light: #6b5740;
+    --paper: #f2e8d5;
+    --paper-dark: #e8d8b8;
+    --paper-darker: #d4c49a;
+    --accent: #8b1a1a;
+    --accent-gold: #c8961e;
+    --rule: #3d2e1a;
+    --shadow: rgba(26, 18, 9, 0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.75;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 0;
+    position: relative;
+    border-bottom: 4px double var(--accent-gold);
+  }
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 32px;
+    border-bottom: 1px solid var(--ink-faded);
+    font-family: 'Special Elite', cursive;
+    font-size: 11px;
+    color: var(--paper-dark);
+    letter-spacing: 0.12em;
+  }
+
+  .masthead-title {
+    padding: 28px 24px 12px;
+  }
+
+  .masthead-subtitle {
+    font-family: 'Special Elite', cursive;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 8vw, 5.5rem);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--paper);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+  }
+
+  .masthead-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    padding: 10px 24px;
+    border-top: 1px solid rgba(200,150,30,0.3);
+  }
+
+  .masthead-rule span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent-gold);
+    letter-spacing: 0.08em;
+  }
+
+  .rule-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(200,150,30,0.3);
+    max-width: 120px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--paper-dark);
+    border-bottom: 3px solid var(--ink);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    text-align: center;
+    padding: 0;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 12px 20px;
+    font-family: 'Special Elite', cursive;
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-right: 1px solid var(--paper-darker);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  nav ul li:first-child a { border-left: 1px solid var(--paper-darker); }
+
+  nav ul li a:hover {
+    background: var(--ink);
+    color: var(--accent-gold);
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section {
+    padding: 56px 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .section-kicker {
+    font-family: 'Special Elite', cursive;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px auto 0;
+    justify-content: center;
+  }
+
+  .divider-line {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .divider-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-gold);
+    transform: rotate(45deg);
+  }
+
+  /* ── ABOUT (2-col newspaper layout) ── */
+  #about { border-bottom: 3px double var(--ink); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .portrait-frame {
+    position: relative;
+  }
+
+  .portrait-frame::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 2px solid var(--accent-gold);
+    z-index: 0;
+  }
+
+  .portrait-frame::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border: 1px solid var(--ink-light);
+    z-index: 0;
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    display: block;
+    filter: sepia(30%) contrast(1.05);
+    position: relative;
+    z-index: 1;
+  }
+
+  .portrait-caption {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Special Elite', cursive;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+  }
+
+  .about-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-faded);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--paper-darker);
+    padding-bottom: 8px;
+  }
+
+  .about-lead {
+    font-size: 1.1rem;
+    font-style: italic;
+    font-family: 'IM Fell English', serif;
+    color: var(--ink-faded);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .about-body {
+    columns: 2;
+    column-gap: 32px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--ink-faded);
+  }
+
+  .about-body p { margin-bottom: 12px; break-inside: avoid; }
+
+  .info-table {
+    margin-top: 24px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--paper-darker);
+  }
+
+  .info-table table { width: 100%; border-collapse: collapse; }
+
+  .info-table tr { border-bottom: 1px solid var(--paper-darker); }
+
+  .info-table td {
+    padding: 6px 8px;
+    font-family: 'Special Elite', cursive;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+  }
+
+  .info-table td:first-child {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--accent);
+    width: 45%;
+    border-right: 1px solid var(--paper-darker);
+  }
+
+  /* ── SKILLS ── */
+  #skills {
+    background: var(--ink);
+    color: var(--paper);
+    border-top: 4px double var(--accent-gold);
+    border-bottom: 4px double var(--accent-gold);
+  }
+
+  #skills .section-header h2 { color: var(--paper); }
+  #skills .section-kicker { color: var(--accent-gold); }
+  #skills .divider-line { background: var(--accent-gold); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .skill-card {
+    border: 1px solid rgba(200,150,30,0.3);
+    padding: 20px;
+    position: relative;
+    background: rgba(255,255,255,0.03);
+    transition: background 0.3s;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px; right: -4px; bottom: -4px;
+    border: 1px solid rgba(200,150,30,0.15);
+    pointer-events: none;
+  }
+
+  .skill-card:hover { background: rgba(200,150,30,0.06); }
+
+  .skill-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(200,150,30,0.2);
+    padding-bottom: 6px;
+  }
+
+  .skill-card p {
+    font-size: 13px;
+    color: rgba(242,232,213,0.75);
+    line-height: 1.7;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { border-bottom: 3px double var(--ink); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  .project-card {
+    background: var(--paper-dark);
+    border: 1px solid var(--paper-darker);
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px var(--paper-darker);
+    pointer-events: none;
+  }
+
+  .project-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .project-thumb {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+    filter: sepia(20%) contrast(1.05);
+    border-bottom: 2px solid var(--ink);
+    transition: filter 0.3s;
+  }
+
+  .project-card:hover .project-thumb { filter: sepia(0%) contrast(1.1); }
+
+  .project-body { padding: 18px 20px 20px; }
+
+  .project-tag {
+    font-family: 'Special Elite', cursive;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .project-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .project-body p {
+    font-size: 13px;
+    color: var(--ink-faded);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  .project-link {
+    display: inline-block;
+    font-family: 'Special Elite', cursive;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 7px 16px;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .project-link:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .project-link.gallery-btn {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: var(--ink);
+  }
+
+  .project-link.gallery-btn:hover {
+    background: var(--ink);
+    color: var(--accent-gold);
+    border-color: var(--ink);
+  }
+
+  /* ── EXPERIENCE / EDUCATION ── */
+  #experience { background: var(--paper-dark); border-bottom: 3px double var(--ink); }
+
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--ink);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px dashed var(--paper-darker);
+  }
+
+  .timeline-item:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .timeline-item::before {
+    content: '◆';
+    position: absolute;
+    left: -38px;
+    top: 2px;
+    font-size: 10px;
+    color: var(--accent-gold);
+    background: var(--paper-dark);
+    padding: 2px 3px;
+  }
+
+  .timeline-meta {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .timeline-date {
+    font-family: 'Special Elite', cursive;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .timeline-org {
+    font-family: 'Special Elite', cursive;
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+  }
+
+  .timeline-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .timeline-item p {
+    font-size: 13.5px;
+    color: var(--ink-faded);
+    line-height: 1.75;
+  }
+
+  .exp-edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .exp-col h3, .edu-col h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievement-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 20px;
+    margin-top: 8px;
+  }
+
+  .achievement-badge .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .achievement-badge .badge-text {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .achievement-badge .badge-text strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent-gold);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    text-align: center;
+    background: var(--ink);
+    color: var(--paper);
+    border-top: 4px double var(--accent-gold);
+  }
+
+  #contact .section-kicker { color: var(--accent-gold); }
+  #contact .section-header h2 { color: var(--paper); }
+  #contact .divider-line { background: var(--accent-gold); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+    text-align: left;
+  }
+
+  .contact-item {
+    border: 1px solid rgba(200,150,30,0.3);
+    padding: 20px;
+    position: relative;
+  }
+
+  .contact-label {
+    font-family: 'Special Elite', cursive;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .contact-value {
+    font-size: 14px;
+    color: var(--paper);
+    word-break: break-word;
+    text-decoration: none;
+  }
+
+  .contact-value:hover { color: var(--accent-gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(242,232,213,0.4);
+    text-align: center;
+    padding: 16px;
+    font-family: 'Special Elite', cursive;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    border-top: 1px solid rgba(200,150,30,0.2);
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 7, 3, 0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .lightbox-overlay.active { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .lightbox-inner h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    font-style: italic;
+    text-align: center;
+  }
+
+  .lightbox-slider {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink-faded);
+    border: 2px solid rgba(200,150,30,0.3);
+  }
+
+  .lightbox-slides {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .lightbox-slides img {
+    min-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .lightbox-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .lb-btn {
+    background: var(--ink);
+    color: var(--accent-gold);
+    border: 1px solid rgba(200,150,30,0.4);
+    padding: 8px 18px;
+    font-family: 'Special Elite', cursive;
+    font-size: 13px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: background 0.2s;
+  }
+
+  .lb-btn:hover { background: var(--accent-gold); color: var(--ink); }
+
+  .lb-counter {
+    font-family: 'Special Elite', cursive;
+    font-size: 12px;
+    color: rgba(242,232,213,0.5);
+    letter-spacing: 0.1em;
+  }
+
+  .lb-close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: var(--accent);
+    color: var(--paper);
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  /* ── ENTRANCE ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 28px; }
+    .portrait-frame { max-width: 200px; margin: 0 auto; }
+    .about-body { columns: 1; }
+    .exp-edu-grid { grid-template-columns: 1fr; }
+    nav ul li a { padding: 10px 12px; font-size: 10px; letter-spacing: 0.1em; }
+    .masthead h1 { font-size: 2.4rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    section { padding: 40px 0; }
+    .masthead-top { flex-direction: column; gap: 4px; text-align: center; }
+    nav ul { gap: 0; }
+    nav ul li a { border-left: none !important; border-right: none !important; border-bottom: 1px solid var(--paper-darker); width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── MASTHEAD ── -->
+<header class="masthead">
+  <div class="masthead-top">
+    <span>EST. 1994 · ZAMBOANGA CITY, PHILIPPINES</span>
+    <span>INFORMATION TECHNOLOGY · FULL-STACK DEVELOPMENT</span>
+    <span>VOL. I · ISSUE I</span>
+  </div>
+  <div class="masthead-title">
+    <span class="masthead-subtitle">Portfolio of</span>
+    <h1>Venard Jhon C. Salido</h1>
+  </div>
+  <div class="masthead-rule">
+    <div class="rule-line"></div>
+    <span>Software Developer &amp; IT Professional</span>
+    <div class="rule-line"></div>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-kicker">Who I Am</span>
+      <h2>The Man Behind the Code</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+
+    <div class="about-grid fade-up">
+      <div>
+        <div class="portrait-frame">
+          <img src="assets/venard.jpg" alt="Venard Jhon C. Salido" />
+        </div>
+        <p class="portrait-caption">Venard Jhon C. Salido<br>B.S. Information Technology</p>
+
+        <div class="info-table" style="margin-top: 20px;">
+          <table>
+            <tr><td>Date of Birth</td><td>May 12, 1994</td></tr>
+            <tr><td>Location</td><td>Zamboanga City, PH</td></tr>
+            <tr><td>Nationality</td><td>Filipino</td></tr>
+            <tr><td>Status</td><td>Single</td></tr>
+            <tr><td>Blood Type</td><td>O</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h3>A Note on Purpose</h3>
+        <p class="about-lead">"A positive thinker who knows how to troubleshoot, handle problems, and manage what matters — seeking a place where craft meets impact."</p>
+
+        <div class="about-body">
+          <p>Venard Jhon C. Salido is a Filipino software developer and IT professional based in Zamboanga City, holding a Bachelor of Science in Information Technology from Western Mindanao State University.</p>
+          <p>His work spans full-stack web applications, mobile development, database engineering, and process automation — with a particular focus on systems that serve real communities: public safety, government operations, parish services, and construction management.</p>
+          <p>He approaches every project as both a technical challenge and a human one — asking not just <em>how</em> to build, but <em>why</em> it matters to the people who will use it. His tools range from Laravel and Flutter to VBA macros and PostGIS spatial databases.</p>
+          <p>Beyond software, he is a regional quiz bowl champion (ICpEP, 2017), a certified data privacy and cybersecurity awareness advocate through DICT, and a lifelong learner always willing to pick up new technologies.</p>
+        </div>
+
+        <div style="margin-top:20px; padding: 16px; border-left: 3px solid var(--accent); background: var(--paper-dark); display:flex; flex-direction:column; gap:10px;">
+          <div class="achievement-badge" style="display:inline-flex; margin:0;">
+            <span class="badge-icon">🏆</span>
+            <span class="badge-text"><strong>ICpEP Regional Quiz Bowl Champion</strong>Institute of Computer Engineers of the Philippines · Sept 29, 2017</span>
+          </div>
+          <div class="achievement-badge" style="display:inline-flex; margin:0;">
+            <span class="badge-icon">📜</span>
+            <span class="badge-text"><strong>Career Service Professional Eligibility</strong>Civil Service Commission · March 03, 2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-kicker">Competencies</span>
+      <h2>Craft &amp; Capability</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <h4>Web Development</h4>
+        <p>Laravel (PHP), MVC architecture, MySQL, RESTful APIs, HTML/CSS/JS — building robust full-stack platforms for real-world operations.</p>
+      </div>
+      <div class="skill-card fade-up">
+        <h4>Mobile &amp; Cross-Platform</h4>
+        <p>Flutter for cross-platform apps with real-time capabilities — integrated with Supabase, PostgreSQL + PostGIS, and Firebase Cloud Messaging.</p>
+      </div>
+      <div class="skill-card fade-up">
+        <h4>Data &amp; Automation</h4>
+        <p>Microsoft Excel VBA macros, automated reporting pipelines, Critical Path Method scheduling, payroll computation, and compliance dashboards.</p>
+      </div>
+      <div class="skill-card fade-up">
+        <h4>Systems &amp; IT Support</h4>
+        <p>Hardware troubleshooting, OS formatting, software installation, network basics, and systems administration for small to medium organizations.</p>
+      </div>
+      <div class="skill-card fade-up">
+        <h4>Communication &amp; Leadership</h4>
+        <p>Excellent written and verbal communication — capable of translating technical concepts for non-technical stakeholders and leading project coordination.</p>
+      </div>
+      <div class="skill-card fade-up">
+        <h4>Productivity Tools</h4>
+        <p>Advanced MS Word, Excel, and PowerPoint. Experienced in documentation, reporting, and creating user-facing instructional materials.</p>
+      </div>
+      <div class="skill-card fade-up">
+        <h4>Financial &amp; Records Management</h4>
+        <p>Hands-on experience with government financial operations through the Bureau of the Treasury — including money management, payroll reconciliation, and organized records administration.</p>
+      </div>
+      <div class="skill-card fade-up">
+        <h4>Problem Solving &amp; Troubleshooting</h4>
+        <p>Adept at diagnosing hardware and software issues, resolving system conflicts, and finding practical solutions under pressure — from OS-level repairs and formatting to debugging complex application logic and database queries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-kicker">Selected Works</span>
+      <h2>Projects of Note</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- ZECURE -->
+      <article class="project-card fade-up">
+        <img class="project-thumb" src="assets/zecure.jpg" alt="ZECURE Project" />
+        <div class="project-body">
+          <span class="project-tag">Public Safety · Flutter · Supabase</span>
+          <h3>ZECURE — Crime Mapping &amp; Safety System</h3>
+          <p>Developed ZECURE, a cross-platform crime mapping and public safety system for Zamboanga City — connecting citizens and law enforcement through verified incident reporting, real-time crime mapping, safe route navigation, and push notifications. Built using Flutter, Supabase, PostgreSQL + PostGIS, and Firebase Cloud Messaging.</p>
+          <a class="project-link" href="https://zecure.netlify.app/" target="_blank" rel="noopener">Visit Live Site →</a>
+        </div>
+      </article>
+
+      <!-- NMG -->
+      <article class="project-card fade-up">
+        <img class="project-thumb" src="assets/nmg.jpg" alt="NMG Insurance Management System" />
+        <div class="project-body">
+          <span class="project-tag">Insurance · Management System</span>
+          <h3>NMG Insurance Agency — Internal Management System</h3>
+          <p>Built and maintained the internal management system for NMG Insurance Agency, digitizing end-to-end operations — from policy applications and document management to claims processing and client notifications. Introduced a guest claims feature allowing unregistered users to file and track insurance claims online.</p>
+          <a class="project-link" href="https://nmginsurance.free.nf/NMG/pages/landing.php" target="_blank" rel="noopener">Visit Site →</a>
+        </div>
+      </article>
+
+      <!-- CHURCH -->
+      <article class="project-card fade-up">
+        <img class="project-thumb" src="assets/church.jpg" alt="Parish Management System" />
+        <div class="project-body">
+          <span class="project-tag">Community · Parish · Full-Stack</span>
+          <h3>Our Lady of Peace Parish — Online Portal</h3>
+          <p>Developed a full-stack online portal and parish management system for Our Lady of Peace and Good Voyage Parish in Tugbungan — enabling parishioners to book appointments for sacramental services including Baptism, Wedding, and Funeral arrangements, reducing manual coordination for the local community.</p>
+          <a class="project-link" href="https://parishchurch.page.gd/" target="_blank" rel="noopener">Visit Site →</a>
+        </div>
+      </article>
+
+      <!-- DOLE -->
+      <article class="project-card fade-up" onclick="openLightbox('dole')" style="cursor:pointer;">
+        <img class="project-thumb" src="assets/dole/dashboard.jpg" alt="DOLE Payroll System" style="cursor:pointer;" />
+        <div class="project-body">
+          <span class="project-tag">Government · Laravel · Payroll</span>
+          <h3>DOLE Regional Office — Payroll &amp; TEV System</h3>
+          <p>Developed a web-based Payroll Management System with an integrated Travel Expense Voucher (TEV) Module for the Department of Labor and Employment Regional Office. Automates semi-monthly payroll, deductions, government remittance reports, digital payslips, and TEV workflows — replacing manual Excel operations with a centralized, role-based platform built using Laravel, MySQL, and MVC architecture.</p>
+          <button class="project-link gallery-btn" type="button">View Gallery →</button>
+        </div>
+      </article>
+
+      <!-- PMBOK -->
+      <article class="project-card fade-up" onclick="openLightbox('pmbok')" style="cursor:pointer;">
+        <img class="project-thumb" src="assets/pmbok/pmbok 1.jpg" alt="PMBOK Construction Management" style="cursor:pointer;" />
+        <div class="project-body">
+          <span class="project-tag">Construction · Excel VBA · CPM</span>
+          <h3>PMBOK-Based Construction Management System</h3>
+          <p>Developed a PMBOK-based Construction Management System — an automated project planning and monitoring tool built in Microsoft Excel with VBA macros. Streamlines construction scheduling through automated Critical Path Method (CPM) analysis, dynamic Gantt chart generation, mobilization readiness tracking, manpower calculations, and real-time project dashboards.</p>
+          <button class="project-link gallery-btn" type="button">View Gallery →</button>
+        </div>
+      </article>
+
+      <!-- PPE -->
+      <article class="project-card fade-up" onclick="openLightbox('ppe')" style="cursor:pointer;">
+        <img class="project-thumb" src="assets/ppe/ppe 1.jpg" alt="PPE Compliance Tracker" style="cursor:pointer;" />
+        <div class="project-body">
+          <span class="project-tag">Safety · Excel Macro · Compliance</span>
+          <h3>PPE Compliance Tracking System</h3>
+          <p>Designed a macro-enabled Excel system to streamline PPE compliance tracking for construction and industrial sites. Enables safety inspectors to quickly log inspections using barcode scanning, auto-loads trade-specific PPE requirements, enforces a 1-hour re-inspection rule, and logs violations automatically. Includes mobile-friendly data entry, one-tap sync to central log, real-time dashboards, and a formatted compliance report generator.</p>
+          <button class="project-link gallery-btn" type="button">View Gallery →</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE & EDUCATION ── -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-kicker">Background</span>
+      <h2>Experience &amp; Education</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+
+    <div class="exp-edu-grid fade-up">
+      <div class="exp-col">
+        <h3>Professional Experience &amp; Trainings</h3>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-date">June 2020</span>
+              <span class="timeline-org">Bureau of the Treasury</span>
+            </div>
+            <h4>Treasury Department Intern / Trainee</h4>
+            <p>Completed a training attachment at the Bureau of the Treasury, Governor Alvarez St., Zamboanga City — gaining exposure to government financial operations and treasury processes.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-date">Feb 8, 2021</span>
+              <span class="timeline-org">DICT Webinar</span>
+            </div>
+            <h4>Data Privacy Protection Awareness</h4>
+            <p>Completed the Department of Information and Communications Technology (DICT) webinar on data privacy protection — building foundational awareness of RA 10173 and responsible data handling practices.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-date">March 8, 2022</span>
+              <span class="timeline-org">DICT Webinar</span>
+            </div>
+            <h4>Cyber Security Awareness</h4>
+            <p>Completed the DICT webinar: "Tips to Be a Safe and Savvy Online Shopper" — covering cybersecurity hygiene, phishing prevention, and safe online transaction practices.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="edu-col">
+        <h3>Educational Background</h3>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-date">2018 – 2023</span>
+              <span class="timeline-org">WMSU</span>
+            </div>
+            <h4>B.S. Information Technology</h4>
+            <p>Western Mindanao State University — Normal Rd, San Jose, Zamboanga City. Completed a full Bachelor of Science in Information Technology, with focus on software development, database systems, and IT management.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-date">2011 – 2016</span>
+              <span class="timeline-org">WMSU</span>
+            </div>
+            <h4>B.S. Computer Engineering (Undergrad)</h4>
+            <p>Western Mindanao State University — Commenced Bachelor of Science in Computer Engineering before transitioning to Information Technology to align with career direction.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-date">2007 – 2011</span>
+              <span class="timeline-org">ZCHS Main</span>
+            </div>
+            <h4>Secondary Education</h4>
+            <p>Zamboanga City High School Main — Don Alfaro St. Tetuan, Zamboanga City.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-date">2001 – 2007</span>
+              <span class="timeline-org">ZWCS</span>
+            </div>
+            <h4>Primary Education</h4>
+            <p>Zamboanga West Central School — San Jose Rd., Zamboanga City.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-kicker">Get in Touch</span>
+      <h2>Let's Work Together</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+    <p style="color: rgba(242,232,213,0.65); font-size:14px; max-width:520px; margin:0 auto 8px; font-style:italic; font-family:'IM Fell English',serif;">
+      Whether you have a project in mind, a problem to solve, or simply want to connect — the line is always open.
+    </p>
+    <div class="contact-grid fade-up">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a class="contact-value" href="mailto:venardjhoncsalido@gmail.com">venardjhoncsalido@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Mobile</span>
+        <a class="contact-value" href="tel:+639351363586">+63 935 136 3586</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Marcos Drive, Putik<br>Zamboanga City, Philippines</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Availability</span>
+        <span class="contact-value">Open to opportunities<br>&amp; freelance projects</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; display:flex; justify-content:center; gap: 16px; flex-wrap:wrap;">
+      <a href="https://www.facebook.com/venchansalido" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(200,150,30,0.35); padding: 12px 24px; font-family:'Special Elite',cursive; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-gold); text-decoration:none; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--accent-gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent-gold)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/venplaystrings/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(200,150,30,0.35); padding: 12px 24px; font-family:'Special Elite',cursive; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-gold); text-decoration:none; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--accent-gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent-gold)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.linkedin.com/in/venard-jhon-cabahug-salido-08041434b/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; border:1px solid rgba(200,150,30,0.35); padding: 12px 24px; font-family:'Special Elite',cursive; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-gold); text-decoration:none; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--accent-gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='transparent';this.style.color='var(--accent-gold)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Venard Jhon C. Salido · Zamboanga City, Philippines · Crafted with purpose</p>
+</footer>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner" id="lightbox-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <h3 id="lb-title"></h3>
+    <div class="lightbox-slider">
+      <div class="lightbox-slides" id="lb-slides"></div>
+    </div>
+    <div class="lightbox-nav">
+      <button class="lb-btn" onclick="lbPrev()">← Prev</button>
+      <span class="lb-counter" id="lb-counter"></span>
+      <button class="lb-btn" onclick="lbNext()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Fade-up on scroll ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Lightbox ──
+  const galleries = {
+    dole: {
+      title: 'DOLE Payroll & TEV System — Gallery',
+      images: [
+        'assets/dole/dashboard.jpg',
+        'assets/dole/login.jpg',
+        'assets/dole/employee.jpg',
+        'assets/dole/payroll 1.jpg',
+        'assets/dole/payroll 2.jpg',
+        'assets/dole/deductions.jpg',
+        'assets/dole/special payroll.jpg',
+        'assets/dole/tev req.jpg',
+        'assets/dole/TEV.jpg',
+        'assets/dole/office orders.jpg',
+        'assets/dole/reports.jpg',
+        'assets/dole/users.jpg',
+      ]
+    },
+    pmbok: {
+      title: 'PMBOK Construction Management System — Gallery',
+      images: [
+        'assets/pmbok/pmbok 1.jpg',
+        'assets/pmbok/pmbok 2.jpg',
+        'assets/pmbok/pmbok 3.jpg',
+        'assets/pmbok/pmbok 4.jpg',
+      ]
+    },
+    ppe: {
+      title: 'PPE Compliance Tracking System — Gallery',
+      images: [
+        'assets/ppe/ppe 1.jpg',
+        'assets/ppe/ppe 2.jpg',
+        'assets/ppe/ppe 3.jpg',
+        'assets/ppe/ppe 4.jpg',
+        'assets/ppe/ppe 5.jpg',
+      ]
+    }
+  };
+
+  let currentSlide = 0;
+  let currentGallery = null;
+
+  function openLightbox(key) {
+    currentGallery = galleries[key];
+    currentSlide = 0;
+    document.getElementById('lb-title').textContent = currentGallery.title;
+
+    const slides = document.getElementById('lb-slides');
+    slides.innerHTML = '';
+    currentGallery.images.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      slides.appendChild(img);
+    });
+
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function updateLightbox() {
+    const slides = document.getElementById('lb-slides');
+    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.getElementById('lb-counter').textContent =
+      `${currentSlide + 1} / ${currentGallery.images.length}`;
+  }
+
+  function lbNext() {
+    if (currentSlide < currentGallery.images.length - 1) { currentSlide++; updateLightbox(); }
+  }
+
+  function lbPrev() {
+    if (currentSlide > 0) { currentSlide--; updateLightbox(); }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'ArrowRight') lbNext();
+    if (e.key === 'ArrowLeft') lbPrev();
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+</body>
+</html>
