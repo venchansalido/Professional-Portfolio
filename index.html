@@ -108,7 +108,10 @@ nav {
   transition: color 0.15s, background 0.15s;
 }
 
-.nav-links a:hover { color: var(--cream); background: rgba(201,74,42,0.2); }
+.nav-links a:hover,
+.nav-links a:focus-visible { color: var(--cream); background: rgba(201,74,42,0.2); }
+
+.nav-links a:focus-visible { outline: 2px solid var(--rust); outline-offset: -2px; }
 
 /* ── HERO ── */
 #hero {
@@ -211,7 +214,7 @@ nav {
   transition: background 0.15s, color 0.15s;
 }
 
-.btn-fill:hover { background: var(--rust); border-color: var(--rust); }
+.btn-fill:hover, .btn-fill:focus-visible { background: var(--rust); border-color: var(--rust); }
 
 .btn-outline {
   display: inline-block;
@@ -227,7 +230,9 @@ nav {
   transition: background 0.15s, color 0.15s;
 }
 
-.btn-outline:hover { background: var(--ink); color: var(--cream); }
+.btn-outline:hover, .btn-outline:focus-visible { background: var(--ink); color: var(--cream); }
+
+.btn-fill:focus-visible, .btn-outline:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
 
 /* ── HERO RIGHT — PHOTO ── */
 .hero-right {
@@ -300,6 +305,74 @@ nav {
   margin-top: 2px;
 }
 
+/* ── MOBILE-ONLY HERO ──
+   Separate template from .hero-inner above: hidden by default, only
+   switched on inside the <=860px media query. Desktop markup/CSS is
+   untouched. Poster layout — name lives on the photo instead of being
+   printed a second time below it, and the photo uses a portrait crop
+   so the face isn't cut off. */
+.hero-mobile { display: none; }
+
+.hero-mobile-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--sand);
+}
+
+.hero-mobile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  display: block;
+  filter: contrast(1.05) saturate(0.9);
+}
+
+.hero-mobile-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(26,23,20,0.94) 0%,
+    rgba(26,23,20,0.7) 32%,
+    rgba(26,23,20,0.15) 58%,
+    rgba(26,23,20,0) 75%
+  );
+}
+
+.hero-mobile-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 20px 20px 22px;
+}
+
+.hero-mobile-overlay .hero-eyebrow {
+  color: rgba(245,240,232,0.7);
+  margin-bottom: 8px;
+}
+
+.hero-mobile-name {
+  font-family: var(--display);
+  font-size: clamp(30px, 9.5vw, 52px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+  text-wrap: balance;
+  opacity: 0;
+  animation: slideIn 0.7s 0.25s ease forwards;
+}
+
+.hero-mobile-name .accent { color: var(--rust); }
+
+.hero-mobile-body {
+  padding: 32px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
 
 
 /* ── SECTION WRAPPER ── */
@@ -332,6 +405,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 
 .sec-label-top {
@@ -361,6 +435,7 @@ nav {
 .about-text-col {
   padding: 56px 60px;
   border-right: 2px solid var(--light-rule);
+  min-width: 0;
 }
 
 .about-text-col p {
@@ -398,6 +473,7 @@ nav {
 
 .about-sidebar {
   padding: 40px 32px;
+  min-width: 0;
 }
 
 .sidebar-block {
@@ -406,7 +482,7 @@ nav {
   border-bottom: 1px dashed var(--light-rule);
 }
 
-.sidebar-block:last-child { border-bottom: none; }
+.sidebar-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
 .sidebar-label {
   font-family: var(--mono);
@@ -422,6 +498,8 @@ nav {
   color: var(--ink);
   line-height: 1.6;
 }
+
+.sidebar-val strong { font-weight: 600; }
 
 .cert-item {
   display: flex;
@@ -471,8 +549,12 @@ nav {
   transition: background 0.2s;
 }
 
-.skill-block:last-child { border-right: none; }
+/* Desktop: 3 columns. Drop the right border on the last column (would
+   double up with the grid's own border), add a top border to every row
+   after the first. */
+.skill-block:nth-child(3n) { border-right: none; }
 .skill-block:nth-child(n+4) { border-top: 2px solid var(--ink); }
+
 .skill-block:hover { background: var(--sand); }
 
 .skill-block-num {
@@ -512,6 +594,8 @@ nav {
 .skill-block:hover .stag { background: var(--ink); color: var(--cream); }
 .stag.accent { background: var(--rust); color: var(--cream); border-color: var(--rust); }
 .stag.green { background: var(--sage); color: var(--cream); border-color: var(--sage); }
+.skill-block:hover .stag.accent { background: var(--rust); color: var(--cream); }
+.skill-block:hover .stag.green { background: var(--sage); color: var(--cream); }
 
 .skill-block-desc {
   font-size: 14px;
@@ -537,6 +621,7 @@ nav {
   transition: background 0.15s;
 }
 
+/* Desktop: single row of 6, so only the border between items is needed. */
 .lang-item:last-child { border-right: none; }
 .lang-item:hover { background: var(--ink); }
 .lang-item:hover .lang-name { color: var(--cream); }
@@ -545,7 +630,7 @@ nav {
 .lang-dot {
   width: 10px; height: 10px;
   border-radius: 50%;
-  background: var(--sage);
+  background: var(--ink);
   flex-shrink: 0;
 }
 
@@ -573,6 +658,7 @@ nav {
 .proj-item:last-child { border-bottom: none; }
 .proj-item:hover { background: var(--sand); }
 .proj-item.has-link { cursor: pointer; }
+.proj-item.has-link:focus-visible { outline: 2px solid var(--rust); outline-offset: -3px; background: var(--sand); }
 
 .proj-count {
   font-family: var(--display);
@@ -595,6 +681,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   border-right: 2px solid var(--light-rule);
+  min-width: 0;
 }
 
 .proj-cat {
@@ -630,12 +717,12 @@ nav {
 }
 
 .proj-right {
+  position: relative;
   padding: 28px 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  gap: 12px;
   min-width: 160px;
 }
 
@@ -657,11 +744,17 @@ nav {
   white-space: nowrap;
 }
 
-.proj-link-btn:hover { background: var(--ink); color: var(--cream); }
+.proj-link-btn:hover, .proj-link-btn:focus-visible { background: var(--ink); color: var(--cream); }
 .proj-link-btn.rust { border-color: var(--rust); color: var(--rust); }
-.proj-link-btn.rust:hover { background: var(--rust); color: var(--cream); }
+.proj-link-btn.rust:hover, .proj-link-btn.rust:focus-visible { background: var(--rust); color: var(--cream); }
 
+/* Pinned to the corner so its presence never shifts the button's
+   vertical position — every row's link button now sits on the same
+   baseline whether or not that project has a badge. */
 .proj-featured-badge {
+  position: absolute;
+  top: 20px;
+  right: 32px;
   display: inline-block;
   background: var(--rust);
   color: var(--cream);
@@ -697,7 +790,7 @@ nav {
   border-bottom: 1px dashed var(--light-rule);
 }
 
-.exp-entry:last-child { border-bottom: none; margin-bottom: 0; }
+.exp-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
 .exp-date {
   font-family: var(--mono);
@@ -796,6 +889,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   gap: 0;
+  min-width: 0;
 }
 
 .contact-row {
@@ -829,6 +923,8 @@ nav {
   display: flex;
   align-items: center;
   flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .contact-row-val a {
@@ -837,7 +933,7 @@ nav {
   transition: color 0.15s;
 }
 
-.contact-row-val a:hover { color: var(--rust); }
+.contact-row-val a:hover, .contact-row-val a:focus-visible { color: var(--rust); }
 
 .social-row-grid {
   display: grid;
@@ -860,7 +956,7 @@ nav {
   transition: background 0.15s, color 0.15s;
 }
 
-.social-btn:hover { background: var(--ink); color: var(--cream); }
+.social-btn:hover, .social-btn:focus-visible { background: var(--ink); color: var(--cream); }
 
 /* ── FOOTER ── */
 footer {
@@ -921,6 +1017,7 @@ footer {
   align-items: center;
   padding: 14px 20px;
   border-bottom: 2px solid rgba(245,240,232,0.15);
+  gap: 12px;
 }
 
 .lb-ttl {
@@ -940,7 +1037,10 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
+
+.lb-x:focus-visible { outline: 2px solid var(--cream); outline-offset: 2px; }
 
 .lb-img-wrap { overflow: hidden; background: #111; }
 
@@ -973,10 +1073,12 @@ footer {
   font-size: 11px;
   cursor: pointer;
   letter-spacing: 0.1em;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, opacity 0.15s;
 }
 
-.lb-btn:hover { border-color: var(--rust); }
+.lb-btn:hover:not(:disabled) { border-color: var(--rust); }
+.lb-btn:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+.lb-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
 .lb-ct {
   font-family: var(--mono);
@@ -999,6 +1101,13 @@ footer {
   to { opacity: 1; transform: translateX(0); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero-name, .hero-middle, .hero-bottom { animation: none; opacity: 1; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
 /* ── MOBILE NAV ── */
 .nav-hamburger {
   display: none;
@@ -1008,7 +1117,10 @@ footer {
   padding: 5px 10px;
   font-size: 18px;
   cursor: pointer;
+  line-height: 1;
 }
+
+.nav-hamburger:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
 
 /* ══════════════════════════════════════════
    RESPONSIVE
@@ -1019,59 +1131,40 @@ footer {
 }
 
 @media (max-width: 860px) {
-  /* Hero: stack vertically */
-  .hero-inner {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    min-height: unset;
-  }
-
-  /* Photo on top, scales with viewport width */
-  .hero-right {
-    order: -1;
-  }
-
-  .hero-photo-frame {
-    aspect-ratio: 4 / 3;
-    flex: none;
-    width: 100%;
-  }
-
-  .hero-photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-  }
-
-  .hero-left {
-    border-right: none;
-    border-top: 3px solid var(--ink);
-    padding: 48px 0 40px;
-    gap: 28px;
-  }
+  /* Swap to the dedicated mobile hero template; desktop's .hero-inner
+     (and all its own responsive rules above 860px) stay fully intact
+     and simply stop rendering below this breakpoint. */
+  .hero-inner { display: none; }
+  .hero-mobile { display: block; }
 
   /* About */
   #about .about-body { grid-template-columns: 1fr; }
   .about-text-col { border-right: none; border-bottom: 2px solid var(--light-rule); padding: 40px 28px; }
   .about-sidebar { padding: 32px 28px; }
 
-  /* Skills */
+  /* Skills: 2 columns — reset the desktop 3-col border rules and
+     reapply them for a 2-col grid */
   .skills-mega { grid-template-columns: 1fr 1fr; }
-  .skill-block:nth-child(even) { border-right: none; }
+  .skill-block { border-right: 2px solid var(--ink); border-top: none; }
+  .skill-block:nth-child(3n) { border-right: 2px solid var(--ink); }
+  .skill-block:nth-child(2n) { border-right: none; }
   .skill-block:nth-child(n+3) { border-top: 2px solid var(--ink); }
-  .lang-bar-row { grid-template-columns: repeat(3, 1fr); }
-  .lang-item:nth-child(3) { border-right: none; }
-  .lang-item:nth-child(n+4) { border-top: 2px solid var(--ink); }
   #skills .skills-body { padding: 40px 28px; }
+
+  /* Languages: 3 columns — same reset/reapply approach */
+  .lang-bar-row { grid-template-columns: repeat(3, 1fr); }
+  .lang-item { border-right: 2px solid var(--ink); border-top: none; }
+  .lang-item:nth-child(3n) { border-right: none; }
+  .lang-item:nth-child(n+4) { border-top: 2px solid var(--ink); }
 
   /* Experience */
   #experience .exp-body { grid-template-columns: 1fr; padding: 40px 28px; gap: 40px; }
 
-  /* Projects */
-  .proj-item { grid-template-columns: 64px 1fr; }
-  .proj-right { display: none; }
-  .proj-main { padding: 24px 20px; }
+  /* Projects: keep link buttons, drop only the featured badge to save width */
+  .proj-item { grid-template-columns: 64px 1fr auto; }
+  .proj-main { padding: 24px 20px; border-right: none; }
+  .proj-right { padding: 24px 20px 24px 0; min-width: 0; align-items: flex-end; }
+  .proj-featured-badge { display: none; }
 
   /* Contact */
   #contact .contact-body { grid-template-columns: 1fr; }
@@ -1079,7 +1172,18 @@ footer {
   .contact-right { padding: 32px 28px; }
 
   /* Nav */
-  .nav-links { display: none; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 52px; left: 0; right: 0;
+    background: var(--ink);
+    padding: 8px var(--page-gutter) 16px;
+    z-index: 200;
+    border-bottom: 3px solid var(--rust);
+  }
+  .nav-links a { border-left: none; border-top: 1px solid rgba(245,240,232,0.1); padding: 14px 4px; }
+  .nav-links.nav-open { display: flex; }
   .nav-hamburger { display: block; }
 
   /* Footer */
@@ -1089,24 +1193,45 @@ footer {
 @media (max-width: 600px) {
   :root { --page-gutter: 16px; }
 
-  /* Tighter aspect ratio on small phones */
-  .hero-photo-frame { aspect-ratio: 3 / 2; }
+  /* Slightly shorter portrait crop and smaller name on very small phones */
+  .hero-mobile-photo { aspect-ratio: 3 / 4; }
+  .hero-mobile-name { font-size: clamp(26px, 10vw, 38px); }
+  .hero-mobile-body { padding: 28px 16px 36px; gap: 24px; }
 
-  /* Text adjustments */
-  .hero-name { font-size: clamp(52px, 14vw, 80px); }
-
-  /* Skills */
+  /* Skills: single column */
   .skills-mega { grid-template-columns: 1fr; }
-  .skill-block { border-right: none; }
+  .skill-block { border-right: none; border-top: 2px solid var(--ink); }
+  .skill-block:first-child { border-top: none; }
+
+  /* Languages: 2 columns — reset and reapply again.
+     nth-child(3n) must be explicitly restored here: the tablet rule
+     above (3-col layout) also targets item 3 (Dart) and, being a
+     :nth-child selector, outranks a plain .lang-item reset regardless
+     of source order. */
   .lang-bar-row { grid-template-columns: repeat(2, 1fr); }
-  .lang-item:nth-child(even) { border-right: none; }
+  .lang-item { border-right: 2px solid var(--ink); border-top: none; }
+  .lang-item:nth-child(3n) { border-right: 2px solid var(--ink); }
+  .lang-item:nth-child(2n) { border-right: none; }
+  .lang-item:nth-child(n+3) { border-top: 2px solid var(--ink); }
 
   /* Social buttons */
   .social-row-grid { grid-template-columns: 1fr; }
 
-  /* Project count column narrower */
+  /* Project layout stacks on very small screens */
   .proj-item { grid-template-columns: 48px 1fr; }
   .proj-count { font-size: 28px; }
+  .proj-right { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: flex-start; padding: 0 20px 20px; }
+}
+
+/* Utility: visually hidden but accessible */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
 </style>
 </head>
@@ -1115,15 +1240,18 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-mark">VEN<span>.</span></a>
-    <ul class="nav-links">
+    <a href="#hero" class="nav-mark">VEN<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-hamburger" id="hamBtn" onclick="toggleNav()">☰</button>
+    <button class="nav-hamburger" id="hamBtn" onclick="toggleNav()" aria-expanded="false" aria-controls="navLinks">
+      <span id="hamIcon">☰</span>
+      <span class="visually-hidden">Toggle navigation menu</span>
+    </button>
   </div>
 </nav>
 
@@ -1154,13 +1282,43 @@ footer {
 
     <div class="hero-right">
       <div class="hero-photo-frame">
-        <img src="assets/venard.jpg" alt="Venard Jhon C. Salido" />
+        <img src="assets/venard.jpg" alt="Venard Jhon C. Salido" loading="eager" />
       </div>
       <div class="hero-photo-info">
         <div class="info-name">Venard Jhon C. Salido</div>
         <div class="info-sub">BS Information Technology · WMSU · Zamboanga City</div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- MOBILE-ONLY HERO — completely separate markup from .hero-inner above.
+       Desktop is untouched; this block only renders at <=860px (see CSS). -->
+  <div class="hero-mobile">
+    <div class="hero-mobile-photo">
+      <img src="assets/venard.jpg" alt="Venard Jhon C. Salido" loading="eager" />
+      <div class="hero-mobile-scrim"></div>
+      <div class="hero-mobile-overlay">
+        <div class="hero-eyebrow">BSIT Graduate · Full-Stack Developer · 2026</div>
+        <h1 class="hero-mobile-name">VEN<span class="accent">ARD</span> JHON SALIDO</h1>
+      </div>
+    </div>
+
+    <div class="hero-mobile-body">
+      <div class="hero-middle">
+        <div class="hero-role-line">
+          <div class="hero-dash"></div>
+          <span class="hero-role">Builder of real-world systems</span>
+        </div>
+        <p class="hero-desc">
+          From government payroll to city-wide crime mapping — I design and ship software that actual organizations depend on. WMSU BSIT graduate based in Zamboanga City.
+        </p>
+      </div>
+
+      <div class="hero-bottom">
+        <a href="#projects" class="btn-fill">See My Work</a>
+        <a href="#contact" class="btn-outline">Let's Connect</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1254,7 +1412,7 @@ footer {
         <div class="skill-block-title">Web Development</div>
         <div class="skill-tags">
           <span class="stag accent">Laravel</span>
-          <span class="stag">PHP</span>
+          <span class="stag green">PHP</span>
           <span class="stag">HTML5</span>
           <span class="stag">CSS3</span>
           <span class="stag">JavaScript</span>
@@ -1268,11 +1426,11 @@ footer {
         <div class="skill-block-num">02</div>
         <div class="skill-block-title">Mobile / Cross-Platform</div>
         <div class="skill-tags">
-          <span class="stag green">Flutter</span>
+          <span class="stag accent">Flutter</span>
           <span class="stag green">Dart</span>
-          <span class="stag green">Supabase</span>
-          <span class="stag green">Firebase FCM</span>
-          <span class="stag green">Real-time</span>
+          <span class="stag">Supabase</span>
+          <span class="stag">Firebase FCM</span>
+          <span class="stag">Real-time</span>
         </div>
         <p class="skill-block-desc">Single codebase for Android & iOS using Flutter. Built ZECURE — a live public safety app with spatial queries and push alerts.</p>
       </div>
@@ -1281,8 +1439,8 @@ footer {
         <div class="skill-block-num">03</div>
         <div class="skill-block-title">Databases & Backend</div>
         <div class="skill-tags">
-          <span class="stag">MySQL</span>
-          <span class="stag">PostgreSQL</span>
+          <span class="stag accent">MySQL</span>
+          <span class="stag green">PostgreSQL</span>
           <span class="stag">PostGIS</span>
           <span class="stag">SQLite</span>
           <span class="stag">Firebase</span>
@@ -1295,8 +1453,8 @@ footer {
         <div class="skill-block-num">04</div>
         <div class="skill-block-title">Automation & Excel VBA</div>
         <div class="skill-tags">
-          <span class="stag">Microsoft Excel</span>
-          <span class="stag">VBA Macros</span>
+          <span class="stag accent">VBA Macros</span>
+          <span class="stag green">Microsoft Excel</span>
           <span class="stag">CPM Scheduling</span>
           <span class="stag">Barcode Integration</span>
         </div>
@@ -1308,8 +1466,8 @@ footer {
         <div class="skill-block-num">05</div>
         <div class="skill-block-title">IT Support & Systems</div>
         <div class="skill-tags">
-          <span class="stag">Troubleshooting</span>
-          <span class="stag">OS Installation</span>
+          <span class="stag accent">Troubleshooting</span>
+          <span class="stag green">OS Installation</span>
           <span class="stag">Networking Basics</span>
           <span class="stag">Hardware</span>
         </div>
@@ -1320,8 +1478,8 @@ footer {
         <div class="skill-block-num">06</div>
         <div class="skill-block-title">Communication & People Skills</div>
         <div class="skill-tags">
-          <span class="stag">English & Filipino</span>
-          <span class="stag">Client Coordination</span>
+          <span class="stag accent">English & Filipino</span>
+          <span class="stag green">Client Coordination</span>
           <span class="stag">Team Collaboration</span>
           <span class="stag">Stakeholder Mgmt</span>
           <span class="stag">Report Writing</span>
@@ -1333,9 +1491,9 @@ footer {
     <div class="lang-bar-row reveal">
       <div class="lang-item"><div class="lang-dot"></div><div class="lang-name">PHP</div></div>
       <div class="lang-item"><div class="lang-dot"></div><div class="lang-name">JavaScript</div></div>
-      <div class="lang-item"><div class="lang-dot" style="background:var(--rust);"></div><div class="lang-name">Dart</div></div>
+      <div class="lang-item"><div class="lang-dot"></div><div class="lang-name">Dart</div></div>
       <div class="lang-item"><div class="lang-dot"></div><div class="lang-name">Python</div></div>
-      <div class="lang-item"><div class="lang-dot" style="background:var(--rust);"></div><div class="lang-name">VBA</div></div>
+      <div class="lang-item"><div class="lang-dot"></div><div class="lang-name">VBA</div></div>
       <div class="lang-item"><div class="lang-dot"></div><div class="lang-name">SQL</div></div>
     </div>
   </div>
@@ -1352,26 +1510,26 @@ footer {
   </div>
 
   <div class="projects-body">
-    <div class="proj-item has-link reveal" onclick="window.open('https://zecure.netlify.app/','_blank')">
+    <div class="proj-item has-link reveal" tabindex="0" role="link" aria-label="Open ZECURE live site" onclick="window.open('https://zecure.netlify.app/','_blank')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.open('https://zecure.netlify.app/','_blank');}">
       <div class="proj-count">01</div>
       <div class="proj-main">
         <div class="proj-cat">Capstone · Public Safety · Flutter · PostGIS</div>
         <div class="proj-title">ZECURE — Crime Mapping & Public Safety System</div>
         <p class="proj-desc">Live cross-platform app for Zamboanga City. Real-time crime mapping, verified incident reporting, safe-route navigation, and push notifications. Built with Flutter, Supabase, PostgreSQL + PostGIS, and Firebase Cloud Messaging.</p>
         <div class="proj-stack">
-          <span class="stag green">Flutter</span>
+          <span class="stag accent">Flutter</span>
           <span class="stag green">Supabase</span>
-          <span class="stag green">PostGIS</span>
-          <span class="stag green">Firebase FCM</span>
+          <span class="stag">PostGIS</span>
+          <span class="stag">Firebase FCM</span>
         </div>
       </div>
       <div class="proj-right">
         <span class="proj-featured-badge">Live Site</span>
-        <a href="https://zecure.netlify.app/" target="_blank" rel="noopener" class="proj-link-btn rust" onclick="event.stopPropagation()">Visit →</a>
+        <a href="https://zecure.netlify.app/" target="_blank" rel="noopener" class="proj-link-btn rust" onclick="event.stopPropagation()" tabindex="-1">Visit →</a>
       </div>
     </div>
 
-    <div class="proj-item has-link reveal" onclick="openLightbox('dole')">
+    <div class="proj-item has-link reveal" tabindex="0" role="button" aria-label="Open DOLE Region IX payroll system gallery" onclick="openLightbox('dole')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('dole');}">
       <div class="proj-count">02</div>
       <div class="proj-main">
         <div class="proj-cat">Government · OJT Project · Laravel · MVC</div>
@@ -1379,48 +1537,48 @@ footer {
         <p class="proj-desc">Replaced manual Excel payroll operations for the entire DOLE Regional Office. Automates semi-monthly deductions, SSS/PhilHealth/Pag-IBIG remittance reports, digital payslips, and TEV approval workflows with role-based access.</p>
         <div class="proj-stack">
           <span class="stag accent">Laravel</span>
-          <span class="stag">MySQL</span>
+          <span class="stag green">MySQL</span>
           <span class="stag">PHP</span>
           <span class="stag">MVC</span>
         </div>
       </div>
       <div class="proj-right">
         <span class="proj-featured-badge">Gallery</span>
-        <button class="proj-link-btn" onclick="event.stopPropagation(); openLightbox('dole')">View →</button>
+        <button class="proj-link-btn" onclick="event.stopPropagation(); openLightbox('dole')" tabindex="-1">View →</button>
       </div>
     </div>
 
-    <div class="proj-item has-link reveal" onclick="window.open('https://nmginsurance.free.nf/NMG/pages/landing.php','_blank')">
+    <div class="proj-item has-link reveal" tabindex="0" role="link" aria-label="Open NMG Insurance Agency live site" onclick="window.open('https://nmginsurance.free.nf/NMG/pages/landing.php','_blank')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.open('https://nmginsurance.free.nf/NMG/pages/landing.php','_blank');}">
       <div class="proj-count">03</div>
       <div class="proj-main">
         <div class="proj-cat">Freelance · Insurance · PHP</div>
         <div class="proj-title">NMG Insurance Agency — Internal Management System</div>
         <p class="proj-desc">Digitized end-to-end insurance operations: policy applications, document management, claims processing, and a guest claims feature for unregistered users to file and track insurance claims online.</p>
         <div class="proj-stack">
-          <span class="stag">PHP</span>
-          <span class="stag">MySQL</span>
+          <span class="stag accent">PHP</span>
+          <span class="stag green">MySQL</span>
           <span class="stag">HTML/CSS/JS</span>
         </div>
       </div>
       <div class="proj-right">
-        <a href="https://nmginsurance.free.nf/NMG/pages/landing.php" target="_blank" rel="noopener" class="proj-link-btn" onclick="event.stopPropagation()">Visit →</a>
+        <a href="https://nmginsurance.free.nf/NMG/pages/landing.php" target="_blank" rel="noopener" class="proj-link-btn" onclick="event.stopPropagation()" tabindex="-1">Visit →</a>
       </div>
     </div>
 
-    <div class="proj-item has-link reveal" onclick="window.open('https://parishchurch.page.gd/','_blank')">
+    <div class="proj-item has-link reveal" tabindex="0" role="link" aria-label="Open Our Lady of Peace Parish portal" onclick="window.open('https://parishchurch.page.gd/','_blank')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.open('https://parishchurch.page.gd/','_blank');}">
       <div class="proj-count">04</div>
       <div class="proj-main">
         <div class="proj-cat">Freelance · Community · Full-Stack</div>
         <div class="proj-title">Our Lady of Peace Parish — Online Appointment Portal</div>
         <p class="proj-desc">Full-stack parish portal enabling parishioners to book sacramental services — Baptism, Wedding, Funeral arrangements — online, dramatically reducing manual coordination for the parish staff.</p>
         <div class="proj-stack">
-          <span class="stag">PHP</span>
-          <span class="stag">MySQL</span>
+          <span class="stag accent">PHP</span>
+          <span class="stag green">MySQL</span>
           <span class="stag">HTML/CSS/JS</span>
         </div>
       </div>
       <div class="proj-right">
-        <a href="https://parishchurch.page.gd/" target="_blank" rel="noopener" class="proj-link-btn" onclick="event.stopPropagation()">Visit →</a>
+        <a href="https://parishchurch.page.gd/" target="_blank" rel="noopener" class="proj-link-btn" onclick="event.stopPropagation()" tabindex="-1">Visit →</a>
       </div>
     </div>
 
@@ -1431,8 +1589,8 @@ footer {
         <div class="proj-title">PESO Job Portal — Zamboanga City</div>
         <p class="proj-desc">Online job portal exclusively for Zamboanga City citizens, developed for the Public Employment Service Office to connect local job seekers with employers. Built with PHP, Bootstrap, Tailwind, and MySQL.</p>
         <div class="proj-stack">
-          <span class="stag">PHP</span>
-          <span class="stag">MySQL</span>
+          <span class="stag accent">PHP</span>
+          <span class="stag green">MySQL</span>
           <span class="stag">Bootstrap</span>
           <span class="stag">Tailwind</span>
         </div>
@@ -1440,37 +1598,37 @@ footer {
       <div class="proj-right"></div>
     </div>
 
-    <div class="proj-item has-link reveal" onclick="openLightbox('pmbok')">
+    <div class="proj-item has-link reveal" tabindex="0" role="button" aria-label="Open PMBOK construction management system gallery" onclick="openLightbox('pmbok')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('pmbok');}">
       <div class="proj-count">06</div>
       <div class="proj-main">
         <div class="proj-cat">Freelance · Construction · Excel VBA</div>
         <div class="proj-title">PMBOK-Based Construction Management System</div>
         <p class="proj-desc">Automated project planning tool in Excel VBA — CPM scheduling, dynamic Gantt charts, mobilization readiness tracking, manpower calculations, and real-time project dashboards for construction project managers.</p>
         <div class="proj-stack">
-          <span class="stag">Excel</span>
-          <span class="stag">VBA Macros</span>
+          <span class="stag accent">VBA Macros</span>
+          <span class="stag green">Excel</span>
           <span class="stag">CPM</span>
         </div>
       </div>
       <div class="proj-right">
-        <button class="proj-link-btn" onclick="event.stopPropagation(); openLightbox('pmbok')">Gallery →</button>
+        <button class="proj-link-btn" onclick="event.stopPropagation(); openLightbox('pmbok')" tabindex="-1">Gallery →</button>
       </div>
     </div>
 
-    <div class="proj-item has-link reveal" onclick="openLightbox('ppe')">
+    <div class="proj-item has-link reveal" tabindex="0" role="button" aria-label="Open PPE compliance tracking system gallery" onclick="openLightbox('ppe')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox('ppe');}">
       <div class="proj-count">07</div>
       <div class="proj-main">
         <div class="proj-cat">Freelance · Safety · Excel VBA</div>
         <div class="proj-title">Barcode-Assisted PPE Compliance Tracking System</div>
         <p class="proj-desc">Macro-enabled Excel system for construction site safety — barcode scanning, trade-specific PPE requirements, violation logging with 1-hour re-inspection enforcement, real-time dashboards, and formatted compliance reports.</p>
         <div class="proj-stack">
-          <span class="stag">Excel</span>
-          <span class="stag">VBA Macros</span>
+          <span class="stag accent">VBA Macros</span>
+          <span class="stag green">Excel</span>
           <span class="stag">Barcode</span>
         </div>
       </div>
       <div class="proj-right">
-        <button class="proj-link-btn" onclick="event.stopPropagation(); openLightbox('ppe')">Gallery →</button>
+        <button class="proj-link-btn" onclick="event.stopPropagation(); openLightbox('ppe')" tabindex="-1">Gallery →</button>
       </div>
     </div>
 
@@ -1481,8 +1639,8 @@ footer {
         <div class="proj-title">Library Management System</div>
         <p class="proj-desc">Web-based system streamlining library transactions — book reservations, scheduling, and automated dues management built with PHP, Bootstrap, and MySQL.</p>
         <div class="proj-stack">
-          <span class="stag">PHP</span>
-          <span class="stag">MySQL</span>
+          <span class="stag accent">PHP</span>
+          <span class="stag green">MySQL</span>
           <span class="stag">Bootstrap</span>
         </div>
       </div>
@@ -1625,19 +1783,19 @@ footer {
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lb-overlay" id="lbOverlay" onclick="lbOut(event)">
+<div class="lb-overlay" id="lbOverlay" onclick="lbOut(event)" role="dialog" aria-modal="true" aria-labelledby="lbTtl">
   <div class="lb-box" id="lbBox">
     <div class="lb-top">
       <span class="lb-ttl" id="lbTtl"></span>
-      <button class="lb-x" onclick="closeLb()">✕</button>
+      <button class="lb-x" onclick="closeLb()" aria-label="Close gallery">✕</button>
     </div>
     <div class="lb-img-wrap">
       <div class="lb-slides" id="lbSlides"></div>
     </div>
     <div class="lb-bottom">
-      <button class="lb-btn" onclick="lbPrev()">← Prev</button>
+      <button class="lb-btn" id="lbPrevBtn" onclick="lbPrev()">← Prev</button>
       <span class="lb-ct" id="lbCt"></span>
-      <button class="lb-btn" onclick="lbNext()">Next →</button>
+      <button class="lb-btn" id="lbNextBtn" onclick="lbNext()">Next →</button>
     </div>
   </div>
 </div>
@@ -1649,21 +1807,24 @@ const obs = new IntersectionObserver(es => {
 }, { threshold: 0.07 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// Mobile nav
-function toggleNav() {
-  const ul = document.querySelector('.nav-links');
-  const open = ul.style.display === 'flex';
-  if (open) {
-    ul.removeAttribute('style');
-  } else {
-    Object.assign(ul.style, {
-      display: 'flex', flexDirection: 'column',
-      position: 'fixed', top: '52px', left: '0', right: '0',
-      background: '#1a1714', padding: '16px 24px', zIndex: '200',
-      gap: '0', borderBottom: '3px solid #c94a2a'
-    });
-  }
+// Mobile nav (class-based toggle so it never fights the responsive CSS)
+const navLinks = document.getElementById('navLinks');
+const hamBtn = document.getElementById('hamBtn');
+const hamIcon = document.getElementById('hamIcon');
+
+function setNavOpen(open) {
+  navLinks.classList.toggle('nav-open', open);
+  hamBtn.setAttribute('aria-expanded', String(open));
+  hamIcon.textContent = open ? '✕' : '☰';
 }
+
+function toggleNav() {
+  setNavOpen(!navLinks.classList.contains('nav-open'));
+}
+
+// Close mobile menu after choosing a section, and on resize past the breakpoint
+navLinks.addEventListener('click', e => { if (e.target.tagName === 'A') setNavOpen(false); });
+window.addEventListener('resize', () => { if (window.innerWidth > 860) setNavOpen(false); });
 
 // Lightbox
 const gals = {
@@ -1681,25 +1842,30 @@ const gals = {
   }
 };
 
-let cur = 0, gal = null;
+let cur = 0, gal = null, lastFocused = null;
 
 function openLightbox(k) {
   gal = gals[k]; cur = 0;
+  lastFocused = document.activeElement;
   document.getElementById('lbTtl').textContent = gal.title;
   const s = document.getElementById('lbSlides');
   s.innerHTML = '';
-  gal.imgs.forEach(src => {
+  gal.imgs.forEach((src, i) => {
     const img = document.createElement('img');
-    img.src = src; s.appendChild(img);
+    img.src = src;
+    img.alt = `${gal.title} — screenshot ${i + 1} of ${gal.imgs.length}`;
+    s.appendChild(img);
   });
   update();
   document.getElementById('lbOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.getElementById('lbBox').focus?.();
 }
 
 function closeLb() {
   document.getElementById('lbOverlay').classList.remove('open');
   document.body.style.overflow = '';
+  if (lastFocused) lastFocused.focus();
 }
 
 function lbOut(e) { if (e.target === document.getElementById('lbOverlay')) closeLb(); }
@@ -1707,6 +1873,8 @@ function lbOut(e) { if (e.target === document.getElementById('lbOverlay')) close
 function update() {
   document.getElementById('lbSlides').style.transform = `translateX(-${cur * 100}%)`;
   document.getElementById('lbCt').textContent = `${cur + 1} / ${gal.imgs.length}`;
+  document.getElementById('lbPrevBtn').disabled = cur === 0;
+  document.getElementById('lbNextBtn').disabled = cur === gal.imgs.length - 1;
 }
 
 function lbNext() { if (cur < gal.imgs.length - 1) { cur++; update(); } }
