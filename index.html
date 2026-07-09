@@ -232,7 +232,29 @@ nav {
 
 .btn-outline:hover, .btn-outline:focus-visible { background: var(--ink); color: var(--cream); }
 
-.btn-fill:focus-visible, .btn-outline:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+/* Tertiary — lighter weight than the two primary CTAs, for a
+   supporting action (CV download) rather than a competing one. */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--warm-grey);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 13px 4px;
+  border: none;
+  border-bottom: 2px solid var(--light-rule);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.btn-ghost:hover, .btn-ghost:focus-visible { color: var(--rust); border-color: var(--rust); }
+.btn-ghost svg { flex-shrink: 0; }
+
+.btn-fill:focus-visible, .btn-outline:focus-visible, .btn-ghost:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
 
 /* ── HERO RIGHT — PHOTO ── */
 .hero-right {
@@ -1277,6 +1299,10 @@ footer {
       <div class="hero-bottom">
         <a href="#projects" class="btn-fill">See My Work</a>
         <a href="#contact" class="btn-outline">Let's Connect</a>
+        <a href="assets/Venard%20CV.pdf" download class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+          Download CV
+        </a>
       </div>
     </div>
 
@@ -1318,6 +1344,10 @@ footer {
       <div class="hero-bottom">
         <a href="#projects" class="btn-fill">See My Work</a>
         <a href="#contact" class="btn-outline">Let's Connect</a>
+        <a href="assets/Venard%20CV.pdf" download class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+          Download CV
+        </a>
       </div>
     </div>
   </div>
@@ -1336,21 +1366,18 @@ footer {
   <div class="about-body">
     <div class="about-text-col reveal">
       <p>
-        I'm a Filipino software developer who just graduated with a Bachelor of Science in Information Technology from Western Mindanao State University. What I bring to the table isn't just code — it's a track record of delivering software that real organizations trust and depend on.
+        Fresh grad, but not fresh at this — between freelance projects and an On-the-Job Training where I ended up as lead developer, I've already had to make real systems work for real people, not just pass a rubric. I use every tool I can to move fast, but I stay hands-on enough to know why something works, not just that it does.
       </p>
 
       <div class="pull-quote">
-        <p>"Designated as lead developer by the client — not just an intern, but the person who built and deployed the system."</p>
+        <p>I'd rather build something people actually depend on than something that just looks good in a demo.</p>
       </div>
 
       <p>
-        During my OJT at <strong>DOLE Regional Office IX</strong>, I replaced the entire regional office's manual Excel payroll operations with a full Laravel-based platform I designed, built, tested, and deployed — including role-based access, automated government remittances, digital payslips, and TEV approval workflows.
+        I move between tools depending on what a problem actually needs rather than what's trendy — sometimes that's a full platform, sometimes it's a small script that quietly replaces a process someone's been doing by hand for years. Either way, I stay involved past "it works": documentation, testing, and making sure the people who'll use it actually can, without me in the room.
       </p>
       <p>
-        My capstone project, <strong>ZECURE</strong>, is a live cross-platform public safety app for Zamboanga City — real-time crime mapping, safe-route navigation, and push alerts, built with Flutter, Supabase, and PostGIS. It's deployed and public.
-      </p>
-      <p>
-        I pick the right tool for the problem: Laravel for enterprise backends, Flutter for mobile, VBA for field automation, PHP for rapid deployment. I write documentation, train end-users, and stay until the thing actually works.
+        Outside of code, I play strings in a band, chase decent photos on hikes around the city, and I'm slowly working on my own fitness goals. None of that has much to do with programming, and I think that's the point — building things well is supposed to make more room for the rest of life, not less.
       </p>
     </div>
 
@@ -1359,7 +1386,6 @@ footer {
         <div class="sidebar-label">Personal Info</div>
         <div class="sidebar-val">
           <div style="margin-bottom:6px;"><strong>Location</strong><br>Putik, Zamboanga City, PH</div>
-          <div style="margin-bottom:6px;"><strong>Date of Birth</strong><br>May 12, 1994</div>
           <div style="margin-bottom:6px;"><strong>Nationality</strong><br>Filipino</div>
           <div><strong>Status</strong><br><span style="color:var(--sage); font-weight:600;">Open to opportunities</span></div>
         </div>
